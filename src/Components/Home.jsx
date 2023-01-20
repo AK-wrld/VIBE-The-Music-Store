@@ -1,0 +1,46 @@
+import React from 'react'
+import '../home.css'
+
+// import PropTypes from 'prop-types'
+import Navbar from './Navbar'
+import QueueList from './QueueList'
+import Carousel from './Carousel'
+import Cards from './Cards'
+import LoadingBar from 'react-top-loading-bar'
+import { useState } from 'react'
+import '../CSS/home.css'
+export default function Home(props) {
+  const [progress, setProgress] = useState(100)
+  
+  const changeProgress = (progress)=> {
+    setProgress( {
+      progress:progress
+    })
+  }
+  
+ 
+  return (
+    <>
+    {/* {console.log(props.mode)} */}
+    <Navbar mode={props.mode} textCol={props.textCol} queue={props.queue} showQueue={props.showQueue} />
+    <LoadingBar
+        color='#f11946'
+        
+        height={3}
+        waitingTime={1000}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      changeProgress={progress}/>
+      <div className="container my-3">
+
+     <QueueList mode={props.mode} queue={props.queue} showQueue={props.showQueue}/>
+     
+     <h1 style={props.textCol} className='homeTitle' >Create your own <span className='vibe'>VLBE</span>  </h1>
+     <Cards/>
+     <h3 style={props.textCol} className='homeTitle' >Haven't created a <span className='vibe'>VLBE</span>  yet? Dont worry we got you covered</h3>
+     <h1 style={props.textCol} className='homeTitle' id='defVibeTitle'> <span className='vibe'>VLBE</span>  we created for You</h1>
+     <Carousel mode={props.mode} attributes = {props.attributes} changePlaylist={props.changePlaylist}/>
+      </div>
+    </>
+  )
+}

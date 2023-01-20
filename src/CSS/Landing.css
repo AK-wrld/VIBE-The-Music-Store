@@ -1,0 +1,159 @@
+
+* {
+    padding-left: 0%;
+    margin-left: 0%;
+  }
+  #root {
+    height: 100vh;
+  }
+  body {
+    background-color: #FA8BFF;
+    background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+    /* background-color: #000000;
+    background-image: linear-gradient(45deg, #000000 0%, #ba2593 94%); */
+    background-size: 400%;
+    overflow-x: hidden;
+  
+    animation: body-animation 30s linear infinite alternate;
+  
+  }
+  
+  @keyframes body-animation {
+    from {
+        background-position: left;
+    }
+  
+    to {
+        background-position: right;
+    }
+  }
+  
+  .logo {
+    border-radius: 150px;
+    /* background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(14, 174, 87, 1) 0%, rgba(12, 116, 117, 1) 90%); */
+  
+    /* box-shadow: 10px 10px 30px #8b8b8ba1,
+        -10px -10px 30px #ffffffa7; */
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 300px;
+    z-index: 2;
+  }
+  
+  .title {
+    font-family: 'Takota', sans-serif;
+    letter-spacing: 30px;
+    font-size: 75px;
+    position: absolute;
+    top: 54%;
+    left: 56%;
+    transform: translate(-50%, -50%);
+    /* color:purple; */
+  
+  
+  
+  }
+  
+  .title,
+  .headphone {
+    cursor: pointer;
+    background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 400%;
+    color: transparent;
+    animation: col-animation 20s linear infinite alternate;
+  }
+  .headphoneAnimation{
+    animation: headphoneAnimation 0.7s linear infinite alternate,
+               col-animation 20s linear infinite alternate;
+  }
+  @keyframes headphoneAnimation {
+    from {
+        top: 25%;
+        /* background-position: left; */
+    }
+    to {
+        top: 21%;
+        /* background-position: right; */
+    }
+  }
+  @keyframes col-animation {
+    from {
+        background-position: left;
+    }
+  
+    to {
+        background-position: right;
+    }
+  }
+  
+  .image {
+    width: 90px;
+    position: absolute;
+    top: 27%;
+    left: 15%;
+    transform: translateX(17px);
+  }
+  
+  .wave {
+    position: fixed;
+  width: 100%;
+    bottom: 0%;
+    background:url('../Images/wave.png');
+    width: 100%;
+    height: 99px;
+    overflow: hidden;
+   
+    background-size: 1000px 100px;
+  
+    filter: opacity(0.4);
+    animation: wave 30s linear infinite alternate;
+  }
+  
+  .headphone {
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    transform: translateX(26px);
+    font-size: 75px;
+    background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  @keyframes wave {
+    from {
+        background-position-x: left;
+    }
+  
+    to {
+        background-position-x: right;
+    }
+  }
+  .dolphin {
+    max-width: 100%;
+    position: fixed;
+    bottom: 0px;
+    opacity: 0.8;
+    left: 0px;
+    animation: 25s linear 0s infinite normal forwards running movegif;
+    z-index: 1;
+  }
+  .dolphin > img {
+    width: 500px;
+  
+  }
+  @keyframes movegif {
+    from {
+        left: 0px;
+    }
+    to {
+        left: 100%;
+    }
+  }
+  

@@ -1,0 +1,71 @@
+
+#carousels {
+    position: relative;
+}
+#carousels>li {
+    position: absolute;
+}
+.optionCont1 {
+    border-radius: 71px;
+    background-color: black;
+    height: 65px;
+    width: 475px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+}
+.option1 {
+    font-family: 'Kalam', cursive;
+    background-color: #fb6161;
+    background-image: linear-gradient(45deg, #fb6161 0%, #fff95a 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: body-animation 30s linear infinite alternate;
+    margin: 0;
+
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent;
+animation: body-animation 30s linear infinite alternate;
+
+}
+.carouselcontainer {
+    width: 40%;
+    margin: 65px auto;
+    
+}
+.quote {
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
+}
+.titleQuote {
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    font-weight: bolder;
+}
+.optionCont2 {
+    background-color: black;
+    width: 415px;
+    border-radius: 71px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.option2 {
+    font-family: 'Kalam', cursive;
+    background-color: #fb6161;
+    background-image: linear-gradient(45deg, #fb6161 0%, #fff95a 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin: 0;
+    animation: body-animation 30s linear infinite alternate;
+}
+.carousel-inner {
+    border-radius: 24px;
+}
