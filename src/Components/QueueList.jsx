@@ -1,20 +1,11 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState,useContext } from 'react'
+import ModeContext from '../context/ContextFiles/ModeContext'
+import QueueContext from '../context/ContextFiles/QueueContext'
 import '../CSS/Queue.css'
 import btn from '../Images/rightarrow.png'
-export default function QueueList(props) {
-
-  const [btnStyle, switchBtn] = useState({
-    
-    transform : 'translateX(0px) scaleX()',
-        
-        transition :'transform 1s'
-  })
-  
-  const [queueshift,changeQueueShift] = useState({
-    transform:'translateX(-100%)'
-  })
- 
-  
+export default function QueueList() {
+  const props = useContext(ModeContext)
+  const q = useContext(QueueContext)
   const changeQueueBg=()=> {
     const queueList = document.getElementById("queueList")
     // console.log(queueList)
@@ -29,36 +20,36 @@ export default function QueueList(props) {
     
   }
   const flipBtn = ()=> {
-    if(props.queue ==="hidden") {
+    if(q.queue ==="hidden") {
       
-      switchBtn({
+      q.switchBtn({
         transform : "translateX(345px) scaleX(-1)",
     
     transition :'transform 1s'
       })
-      changeQueueShift({
+      q.changeQueueShift({
         transform:'translateX(0%)'
       })
     }
     else {
       
-      switchBtn({
+      q.switchBtn({
         transform : 'translateX(0px) scaleX(1)',
       
         transition :'transform 1s'
       })
-      changeQueueShift({
+      q.changeQueueShift({
         transform:'translateX(-100%)'
       })
     }
   }
-  useEffect(flipBtn,[props.queue])
+  useEffect(flipBtn,[q.queue])
   useEffect(changeQueueBg,[props.mode])
   return (
     <>
       
 
-      <div className="queueList" id='queueList' style={queueshift  }>
+      <div className="queueList" id='queueList' style={q.queueshift  }>
       <h2 className='py-3'>Your Queue</h2>
       <ul>
         <li className="song1">Hello</li>
@@ -68,7 +59,7 @@ export default function QueueList(props) {
         <li className="song5">meet</li>
       </ul>
       </div>
-      <button className="queuebtn" style={btnStyle} onClick={()=>{props.queue==='hidden'?props.showQueue('show'):props.showQueue('hidden')}}>
+      <button className="queuebtn" style={q.btnStyle} onClick={()=>{q.queue==='hidden'?q.showQueue('show'):q.showQueue('hidden')}}>
         {/* {console.log(props.queue)} */}
       <img src={btn} alt="" />
       </button>

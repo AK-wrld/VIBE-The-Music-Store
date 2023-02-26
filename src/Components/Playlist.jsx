@@ -1,10 +1,14 @@
-import React, {useEffect} from 'react'
+import React, {useEffect,useContext} from 'react'
 import Navbar from './Navbar'
 // import LoadingBar from 'react-top-loading-bar'
 import '../CSS/Playlist.css';
 import QueueList from './QueueList';
+import ModeContext from '../context/ContextFiles/ModeContext'
 
-export default function Playlist(props) {
+export default function Playlist() {
+  
+  const props = useContext(ModeContext)
+    useEffect(props.toggleMode,[props.mode])
   const changeStyle=()=> {
     const PlaylistTitle = document.getElementById('playlistTitle')
     if(props.mode==='light') {
@@ -21,8 +25,8 @@ export default function Playlist(props) {
   return (
     <div>
       {/* {console.log(props.queue)} */}
-      <Navbar mode={props.mode} textCol={props.textCol}queue={props.queue} showQueue={props.showQueue}/>
-      <QueueList mode={props.mode} queue={props.queue} showQueue={props.showQueue}/>
+      <Navbar />
+      <QueueList />
       <div className="container main">
       <div className="container">
         <div className="container photoTitleContainer">

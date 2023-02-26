@@ -1,18 +1,21 @@
 
-
+import React,{useContext, useEffect} from 'react'
 import dolphin from '../Images/dolphin.gif'
 import '../CSS/Landing.css';
 import { Link } from 'react-router-dom';
-export default function Landing(props) {
-    const headAniAdd = function headAniAdd() {
-        var headphone = document.getElementById('headphone')
-        headphone.classList.add('headphoneAnimation')
-    }
-    const headAniRem = function headAniRem() {
-        var headphone = document.getElementById('headphone')
-        headphone.classList.remove('headphoneAnimation')
-      }
-    
+import ModeContext from '../context/ContextFiles/ModeContext'
+export default function Landing() {
+  const headAniAdd = function headAniAdd() {
+    var headphone = document.getElementById('headphone')
+    headphone.classList.add('headphoneAnimation')
+  }
+  const headAniRem = function headAniRem() {
+    var headphone = document.getElementById('headphone')
+    headphone.classList.remove('headphoneAnimation')
+  }
+
+  const props = useContext(ModeContext)
+    useEffect(props.toggleMode,[props.mode])
       
       return (
         <>

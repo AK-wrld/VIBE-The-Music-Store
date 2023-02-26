@@ -1,16 +1,20 @@
-import React from 'react'
+import {React,useContext} from 'react'
 import '../CSS/Navbar.css'
-import { Link } from 'react-router-dom';
+import { Link ,useLocation} from 'react-router-dom';
 import rightarrow from '../Images/rightarrow.png'
 import leftarrow from '../Images/leftarrow.png'
+import ModeContext from '../context/ContextFiles/ModeContext';
+import QueueContext from '../context/ContextFiles/QueueContext';
 
 // import PropTypes from 'prop-types'
 // import  { useState } from 'react'
-export default function Navbar(props) {
-
+export default function Navbar() {
+const props = useContext(ModeContext)
+const location = useLocation()
+const q = useContext(QueueContext)
   return (
     <>
-  {console.log(window.history.length)}
+ 
     {/* {console.log(props.mode)} */}
       <nav style={{backgroundColor: props.mode==="dark"?" #000000":" #FA8BFF",backgroundImage:props.mode==="dark"?'linear-gradient(45deg, #000000 0%, #ba2593 94%)':'linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%)'}}
        className={`navbar navbar-expand-lg navbar-${props.mode==="dark"?"dark":"light" }`}>
@@ -25,14 +29,14 @@ export default function Navbar(props) {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/home">Home</Link>
+          <Link className={`nav-link ${location.pathname==='/home'?'active':''}`} aria-current="page" to="/home">Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" onClick={()=>{props.queue==='hidden'?props.showQueue('show'):props.showQueue('hidden')}}>Queue List</Link>
+          <Link className="nav-link" onClick={()=>{q.queue==='hidden'?q.showQueue('show'):q.showQueue('hidden')}}>Queue List</Link>
         </li>
         
         <li className="nav-item">
-          <a className="nav-link">My Profile</a>
+          <a className={`nav-link`}>My Profile</a>
         </li>
         <li className="nav-item">
 

@@ -1,12 +1,13 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import '../CSS/carousel.css'
 import { Link } from 'react-router-dom';
 
 import Happy from '../Images/Happy.jpg'
 import Sad from '../Images/Sad.jpg'
 import Romantic from '../Images/Romantic.jpg'
-function Carousel(props) {
-  
+import PlaylistContext from '../context/ContextFiles/PlaylistContext';
+function Carousel() {
+  const playlist = useContext(PlaylistContext)
   const selectCarousel = ()=> {
      const parent = document.getElementsByClassName('carousel-item active');
     //  console.log(name)
@@ -17,7 +18,7 @@ function Carousel(props) {
       var quote = innerchild.lastChild.innerText
      
       
-      props.changePlaylist(Name)
+      playlist.changePlaylist(Name)
       window.localStorage.setItem('playlistdata',JSON.stringify({name:Name,quote:quote,img:Name}))
       // console.log(JSON.parse(window.localStorage.getItem('name')))
       
