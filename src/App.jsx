@@ -1,7 +1,7 @@
 
 import { useEffect, useState, useContext } from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter ,
   Routes,
   Route,
 
@@ -9,9 +9,12 @@ import {
 import ModeState from './context/StateFiles/ModeState'
 import QueueState from './context/StateFiles/QueueState'
 import PlaylistState from './context/StateFiles/PlaylistState'
+import LoginState from './context/StateFiles/LoginState'
 import Home from './Components/Home';
 import Landing from './Components/Landing';
 import Playlist from './Components/Playlist'
+import Signup from './Components/Signup'
+import Login from './Components/Login'
 
 function App() {
   return (
@@ -21,10 +24,19 @@ function App() {
       <ModeState>
         <QueueState>
           <PlaylistState>
-            <Router>
+            <LoginState>
+
+            
+            <BrowserRouter>
 
               <Routes>
                 <Route exact path="/" element={<Landing />}>
+                  {/* exact path instead of path is used to avoid partial matching of react */}
+                </Route>
+                <Route exact path="/signup" element={<Signup />}>
+                  {/* exact path instead of path is used to avoid partial matching of react */}
+                </Route>
+                <Route exact path="/login" element={<Login />}>
                   {/* exact path instead of path is used to avoid partial matching of react */}
                 </Route>
                 <Route exact path="/home" element={<Home  />}>
@@ -33,7 +45,8 @@ function App() {
                 </Route>
               </Routes>
 
-            </Router>
+            </BrowserRouter>
+            </LoginState>
           </PlaylistState>
 
         </QueueState>

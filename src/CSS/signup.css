@@ -1,0 +1,40 @@
+.signupBox {
+    width: 40%;
+    height: 80vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* background-color: white; */
+    border-radius: 10px;
+    margin-top: 65px;
+    border-radius: 50px;
+    background: #e0e0e0;
+   
+}
+.signupBtn {
+    border: none;
+    background-color: black;
+    padding: 6px 20px;
+    border-radius: 24px;
+    color: white;
+    width: 20%;
+    text-align: center;
+    text-decoration: none;
+}
+.signupBtn:hover {
+    color: white;
+}
+.signinBtn {
+    border: none;
+    color: white;
+    background-color: black;
+    padding: 6px 20px;
+    border-radius: 24px;
+    text-align: center;
+    
+    text-decoration: none;
+}
+.signinBtn:hover {
+    color: white;
+}

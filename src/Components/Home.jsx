@@ -10,7 +10,9 @@ import LoadingBar from 'react-top-loading-bar'
 import { useState,useContext,useEffect } from 'react'
 import '../CSS/home.css'
 import ModeContext from '../context/ContextFiles/ModeContext'
+import LoginContext from '../context/ContextFiles/LoginContext'
 export default function Home() {
+  const loginProp = useContext(LoginContext)
   const props = useContext(ModeContext)
     useEffect(props.toggleMode,[props.mode])
   const [progress, setProgress] = useState(100)
@@ -20,6 +22,10 @@ export default function Home() {
       progress:progress
     })
   }
+ const token = window.localStorage.getItem('token')
+ if(!token) {
+  return window.location = ('/login')
+ }
  
   return (
     <>
