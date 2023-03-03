@@ -1,7 +1,7 @@
 
-.main {
+/* .main {
     max-width: 900px;
-}
+} */
 #playlistTitle {
     font-family: 'Takota', sans-serif;
     letter-spacing: 1.7px;
@@ -68,4 +68,17 @@ font-size: 35px;
 }
 .play:hover {
     background-color: rgba(255, 3, 100);
+}
+.table {
+    width: 1200px;
+}
+tbody, td, tfoot, th, thead, tr {
+    border-style: none;
+}
+th,td {
+    cursor: pointer;
+}
+tr:hover {
+    transition: background-color 0.3s;
+    background-color: rgba(128, 128, 128, 0.196);
 }

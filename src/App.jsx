@@ -15,8 +15,10 @@ import Landing from './Components/Landing';
 import Playlist from './Components/Playlist'
 import Signup from './Components/Signup'
 import Login from './Components/Login'
-
+import QueueContext from './context/ContextFiles/QueueContext'
 function App() {
+  const q = useContext(QueueContext)
+  
   return (
 
     <>

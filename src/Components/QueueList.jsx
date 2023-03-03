@@ -3,7 +3,8 @@ import ModeContext from '../context/ContextFiles/ModeContext'
 import QueueContext from '../context/ContextFiles/QueueContext'
 import '../CSS/Queue.css'
 import btn from '../Images/rightarrow.png'
-export default function QueueList() {
+import QueueItem from './QueueItem'
+export default function QueueList(prop) {
   const props = useContext(ModeContext)
   const q = useContext(QueueContext)
   const changeQueueBg=()=> {
@@ -45,20 +46,31 @@ export default function QueueList() {
   }
   useEffect(flipBtn,[q.queue])
   useEffect(changeQueueBg,[props.mode])
+ 
+
+  
   return (
     <>
       
 
       <div className="queueList" id='queueList' style={q.queueshift  }>
       <h2 className='py-3'>Your Queue</h2>
-      <ul>
-        <li className="song1">Hello</li>
-        <li className="song2">world</li>
-        <li className="song3">nice</li>
-        <li className="song4">to</li>
-        <li className="song5">meet</li>
+      <ul id='ul'>
+        {q.array.map((el)=> {
+          // console.log(el)
+          
+            return <li key={el._id} >
+              <QueueItem key={el._id} name = {el.name} url = {el.url} />
+              </li>
+          
+          
+          
+        })}
+        
+        
       </ul>
       </div>
+      
       <button className="queuebtn" style={q.btnStyle} onClick={()=>{q.queue==='hidden'?q.showQueue('show'):q.showQueue('hidden')}}>
         {/* {console.log(props.queue)} */}
       <img src={btn} alt="" />

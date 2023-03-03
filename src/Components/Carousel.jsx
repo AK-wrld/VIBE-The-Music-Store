@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../CSS/carousel.css'
 import { Link } from 'react-router-dom';
-import PlaylistContext from '../context/ContextFiles/PlaylistContext';
+
 function Carousel() {
   let [carousel, setCarousel] = useState([])
 
@@ -13,11 +13,11 @@ function Carousel() {
     // console.log(carousel)
   }
   useEffect(() => {
-    console.log("inside useEffect")
+    // console.log("inside useEffect")
     getDefaultPlaylist()
   }, [])
 
-  const playlist = useContext(PlaylistContext)
+  
   const selectCarousel = () => {
     const parent = document.getElementsByClassName('carousel-item active');
     //  console.log(name)
@@ -32,7 +32,7 @@ function Carousel() {
       // console.log(item_id)
       // console.log(img)
 
-      playlist.changePlaylist(Name)
+      
       window.localStorage.setItem('playlistdata', JSON.stringify({ name: Name, quote, img, _id: inp }))
       // console.log(JSON.parse(window.localStorage.getItem('name')))
 

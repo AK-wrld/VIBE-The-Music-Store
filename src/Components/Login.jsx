@@ -58,7 +58,7 @@ const Login = () => {
     let userData = await response.json();
     if(userData.success) {
 
-      window.localStorage.setItem('userData',userData)
+      window.localStorage.setItem('userData',JSON.stringify(userData))
       window.location.assign("/home");
     }
     else {
