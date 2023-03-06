@@ -1,13 +1,17 @@
 import React, { useEffect,useState,useContext } from 'react'
 import { useSelector } from 'react-redux'
+import { createAction } from '../action'
 import ModeContext from '../context/ContextFiles/ModeContext'
+import PlaylistContext from '../context/ContextFiles/PlaylistContext'
 import QueueContext from '../context/ContextFiles/QueueContext'
 import '../CSS/Queue.css'
 import btn from '../Images/rightarrow.png'
+import store from '../store';
 import QueueItem from './QueueItem'
 export default function QueueList(prop) {
   const props = useContext(ModeContext)
   const q = useContext(QueueContext)
+  const playlistProps = useContext(PlaylistContext)
   const changeQueueBg=()=> {
     const queueList = document.getElementById("queueList")
     // console.log(queueList)
@@ -48,7 +52,15 @@ export default function QueueList(prop) {
   useEffect(flipBtn,[q.queue])
   useEffect(changeQueueBg,[props.mode])
   const playingQueuee = useSelector((state)=>state.playingQueue)
-  
+  const isEmpty = useSelector((state)=>state.isEmpty)
+  const clearQueue = ()=> {
+    if(isEmpty===false) {
+      console.log("clearing queue")
+      const action = createAction("clearQueue","")
+      store.dispatch(action)
+      playlistProps.isClicked(false)
+    }
+  }
   //TODO: Quelist kholke nhi print hora
   // console.log(playingQueuee)
 
@@ -58,12 +70,13 @@ export default function QueueList(prop) {
       
 
       <div className="queueList" id='queueList' style={q.queueshift  }>
-      <h2 className='py-3'>Your Queue</h2>
+      <h2 className='py-3' style={{display:"inline"}}>Your Queue</h2>
+      <button className='crossBtn' onClick={clearQueue}><i class="bi bi-x-lg clearQueue" ></i></button>
       <ul id='ul'>
-        {playingQueuee.map((el)=> {
+        {playingQueuee.map((el,index)=> {
           // console.log(el)
           
-            return <li key={el._id} >
+            return <li key={index} >
               <QueueItem key={el._id} name = {el.name} url = {el.url} />
               </li>
           

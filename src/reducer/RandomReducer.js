@@ -2,7 +2,7 @@
 const Reducer = (state = {
     playingQueue: [],
     nextSong:'',
-  isPlaying: false,
+ 
   isEmpty:true
 }, action) => {
     // }
@@ -21,10 +21,16 @@ const Reducer = (state = {
         return {...state,playingQueue:concArr,isEmpty:checkEmpty}
     }
     else if(action.type==='removeSong') {
-        return {
-            ...state,
-            playingQueue: state.playingQueue.filter((song, index) => index !== action.payload)
-          };
+        const newarr = state.playingQueue.slice(1)
+        const checkEmpty = newarr.length>0?false:true
+        return {...state,playingQueue:newarr,isEmpty:checkEmpty}
+          
+        
+    }
+    else if(action.type==='clearQueue') {
+        const newarr = []
+        
+        return {...state,playingQueue:newarr,isEmpty:true}
           
         
     }

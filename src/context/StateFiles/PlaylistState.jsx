@@ -2,7 +2,9 @@ import { useState } from "react";
 import PlaylistContext from '../ContextFiles/PlaylistContext'
 
 const PlaylistState = (props)=> {
-    const [attributes, setAttributes] = useState(null)
+    
+    const [playBtn,isClicked] = useState(false)
+  const [play,isPlaying] = useState(false)
     const [songArray,setSongs] = useState([])
     const fetchSongs = async(playlistId) =>{
       const response = await fetch(`http://localhost:5000/api/def/${playlistId}`, {
@@ -25,7 +27,7 @@ const PlaylistState = (props)=> {
     }
   
     return(
-        <PlaylistContext.Provider value={{songArray,setSongs,fetchSongs}}>
+        <PlaylistContext.Provider value={{songArray,setSongs,fetchSongs,playBtn,isClicked,play,isPlaying}}>
             {props.children}
         </PlaylistContext.Provider>
     )
