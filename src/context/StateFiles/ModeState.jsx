@@ -18,7 +18,7 @@ const modeState = (props)=> {
 
   const toggleMode = () => {
     let hours = displayTime();
-    if (hours >= 6 && hours <= 12) {
+    if (hours >= 6 && hours <= 9) {
       document.body.style.backgroundColor = "rgb(250, 139, 255)"
       document.body.style.backgroundImage = "linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%)"
       document.body.style.transition = "background-color 0.5s"

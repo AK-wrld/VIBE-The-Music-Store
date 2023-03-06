@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef } from 'react'
+import React, { useEffect, useContext, useRef, useState } from 'react'
 import Navbar from './Navbar'
 // import LoadingBar from 'react-top-loading-bar'
 import '../CSS/Playlist.css';
@@ -6,6 +6,9 @@ import QueueList from './QueueList';
 import ModeContext from '../context/ContextFiles/ModeContext'
 import PlaylistContext from '../context/ContextFiles/PlaylistContext'
 import QueueContext from '../context/ContextFiles/QueueContext';
+import { createAction } from '../action';
+import store from '../store';
+import { useSelector } from 'react-redux';
 
 
 export default function Playlist() {
@@ -41,51 +44,54 @@ export default function Playlist() {
   useEffect(changeStyle, [props.mode])
 
   const queue = useContext(QueueContext)
-  const handleClick = ()=> {
-    queue.btnref.current = true
-    // console.log(btnref.current)
-    const newarr = [...queue.array]
-    addSongs(newarr)
-    
+  // const handleClick = ()=> {
+  //   queue.btnref.current = true
+  //   // console.log(btnref.current)
+  //   const newarr = [...queue.array]
+  //   addSongs(newarr)
+
+  // }
+  const [play,isPlaying] = useState(false)
+  const [counter,setCounter] = useState(0)
+  const addSongs = (newarr) => {
+    console.log(newarr)
+    const action = createAction("multiAdd", newarr)
+    store.dispatch(action)
+
   }
-  
-  const addSongs = (newarr)=> {
-    if(queue.btnref.current === true) {
-      // console.log(DefProps.songArray[0].name)
-      // queue.setArray(DefProps.songArray)
-      // console.log(queue.array)
+   const addASong = (el) => {
+    const action = createAction("add", el)
+    store.dispatch(action)
+   
+  }
+
+ 
+  const playingQueuee = useSelector((state) => state.playingQueue)
+  const isEmpty = useSelector((state) => state.isEmpty)
+  const playSong = (url) => {
+      isPlaying(true)
       
-    newarr.push(...DefProps.songArray)
-    queue.setArray(newarr)
-    queue.setCounter((counter)=>counter+newarr.length-1)
-    queue.isEmpty(false)
-    // console.log(queue.array)
-    queue.btnref.current=false
-    // console.log(btnref.current)
-    }
-  }
-  useEffect(addSongs,[queue.btnref.current])
-  
-  const handleClickForASong = (el)=> {
-    // console.log(el)
-    queue.trref.current=true
-    addASong(el)
+      const audio = new Audio(url)
+      audio.addEventListener("canplaythrough",  (event) => {
+        /* the audio is now playable; play it if permissions allow */
+         audio.play();
+      });
+      audio.addEventListener('ended',()=> {
+        isPlaying(false)
+        const action = createAction("removeSong", 0)
+    store.dispatch(action)
+    
+      
+       
+      })
+
+      // if (isEmpty === true) {
+      //   return
+      // }
+
+
     
   }
-  const addASong = (el)=> {
-    if(queue.trref.current===true) {
-      const newarr = [...queue.array]
-    newarr.push(el)
-    queue.setArray(newarr)
-    queue.setCounter((counter)=>counter+1)
-    queue.isEmpty(false)
-    // console.log(queue.array)
-    queue.trref.current = false
-    }
-  }
-  
-  useEffect(addASong,[queue.trref.current])
-  // useEffect(queue.GetASong,[queue.play,queue.empty])
   return (
     <div>
       {/* {console.log(props.queue)} */}
@@ -99,7 +105,9 @@ export default function Playlist() {
             <h1 className="my-3 lightPlaylistTitle" id='playlistTitle'> {obj.name} VLBE</h1>
           </div>
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
-          <button className='mb-3 play' ><i className="bi bi-play-fill icon" ref={queue.btnref} onClick={handleClick}></i></button>
+          <button className='mb-3 play me-3'id='play' onClick={()=>{isEmpty===false&& play===false?playSong(playingQueuee[0].url):''}}><i className="bi bi-play-fill icon" ></i></button>
+          <button className='mb-3 addToQueue' ><i class="bi bi-plus-square icon" ref={queue.btnref} onClick={() => addSongs(DefProps.songArray)}></i></button>
+
         </div>
         <div className="container">
 
@@ -116,7 +124,7 @@ export default function Playlist() {
               const itemIndex = DefProps.songArray.indexOf(el);
               return <tbody style={props.textCol} key={el._id} >
 
-                <tr key={el._id} ref={queue.trref} onClick={()=>handleClickForASong(el)}>
+                <tr key={el._id} ref={queue.trref} onClick={() => addASong(el)}>
                   <th scope="row">{itemIndex}</th>
                   <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'>{el.name}</span></td>
                   <td>{el.artist}</td>

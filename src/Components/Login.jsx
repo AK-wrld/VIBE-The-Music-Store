@@ -1,11 +1,14 @@
 import React, { useContext, useState,useEffect } from 'react'
 import { Link, } from 'react-router-dom'
+import AlertContext from '../context/ContextFiles/AlertContext'
 import LoginContext from '../context/ContextFiles/LoginContext'
 import ModeContext from '../context/ContextFiles/ModeContext'
 import '../CSS/login.css'
+import Alert from './Alert'
 
 const Login = () => {
   const modeProp = useContext(ModeContext)
+  const alertProp = useContext(AlertContext)
   useEffect(modeProp.toggleMode,[modeProp.mode])
   const props = useContext(LoginContext)
   
@@ -37,9 +40,37 @@ const Login = () => {
       getLoggedinUserData(authtoken.authToken)
     }
     else {
+      
+        const errorEmailHandler = document.getElementById('emailError')
+        
+        const errorPassHandler = document.getElementById('passError')
+        console.log(authtoken)
+        var params=''
+        if(authtoken.errors) {
+
+            const errors = authtoken.errors
+            // console.log(errors)
+             params = errors[0].param
+             let error = errors[0].msg
+             if(params === 'password') {
+                
+                
+                 errorEmailHandler.innerText = ''
+                 errorPassHandler.innerText =error
+                 alertProp.showAlert('Could not create Account','danger')
+             }
+             else  {
+                 errorPassHandler.innerText =''
+               
+                errorEmailHandler.innerText = error
+                alertProp.showAlert('Could not create Account','danger')
+             }
+             
+        }
       const errorHandler = document.getElementById('error')
       errorHandler.innerText = authtoken.error
       console.log(authtoken.error)
+      alertProp.showAlert('Login Failed','danger')
     }
     
   }
@@ -69,6 +100,7 @@ const Login = () => {
   
   return (
     <>
+    <Alert/>
       <div className="loginBox container">
         <div className="container" style={{ "display": "flex", "justifyContent": "center" }}>
 

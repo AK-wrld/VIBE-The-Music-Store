@@ -1,4 +1,5 @@
 import React, { useEffect,useState,useContext } from 'react'
+import { useSelector } from 'react-redux'
 import ModeContext from '../context/ContextFiles/ModeContext'
 import QueueContext from '../context/ContextFiles/QueueContext'
 import '../CSS/Queue.css'
@@ -46,7 +47,10 @@ export default function QueueList(prop) {
   }
   useEffect(flipBtn,[q.queue])
   useEffect(changeQueueBg,[props.mode])
- 
+  const playingQueuee = useSelector((state)=>state.playingQueue)
+  
+  //TODO: Quelist kholke nhi print hora
+  // console.log(playingQueuee)
 
   
   return (
@@ -56,7 +60,7 @@ export default function QueueList(prop) {
       <div className="queueList" id='queueList' style={q.queueshift  }>
       <h2 className='py-3'>Your Queue</h2>
       <ul id='ul'>
-        {q.array.map((el)=> {
+        {playingQueuee.map((el)=> {
           // console.log(el)
           
             return <li key={el._id} >

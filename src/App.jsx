@@ -1,7 +1,7 @@
 
 import { useEffect, useState, useContext } from "react";
 import {
-  BrowserRouter ,
+  BrowserRouter,
   Routes,
   Route,
 
@@ -15,10 +15,11 @@ import Landing from './Components/Landing';
 import Playlist from './Components/Playlist'
 import Signup from './Components/Signup'
 import Login from './Components/Login'
-import QueueContext from './context/ContextFiles/QueueContext'
+
+import AlertState from "./context/StateFiles/AlertState";
 function App() {
-  const q = useContext(QueueContext)
-  
+
+
   return (
 
     <>
@@ -27,27 +28,29 @@ function App() {
         <QueueState>
           <PlaylistState>
             <LoginState>
+              <AlertState>
+                <BrowserRouter>
 
-            
-            <BrowserRouter>
+                  <Routes>
+                    <Route exact path="/" element={<Landing />}>
+                      {/* exact path instead of path is used to avoid partial matching of react */}
+                    </Route>
+                    <Route exact path="/signup" element={<Signup />}>
+                      {/* exact path instead of path is used to avoid partial matching of react */}
+                    </Route>
+                    <Route exact path="/login" element={<Login />}>
+                      {/* exact path instead of path is used to avoid partial matching of react */}
+                    </Route>
+                    <Route exact path="/home" element={<Home />}>
+                    </Route>
+                    <Route exact path="/playlist" element={<Playlist />}>
+                    </Route>
+                  </Routes>
 
-              <Routes>
-                <Route exact path="/" element={<Landing />}>
-                  {/* exact path instead of path is used to avoid partial matching of react */}
-                </Route>
-                <Route exact path="/signup" element={<Signup />}>
-                  {/* exact path instead of path is used to avoid partial matching of react */}
-                </Route>
-                <Route exact path="/login" element={<Login />}>
-                  {/* exact path instead of path is used to avoid partial matching of react */}
-                </Route>
-                <Route exact path="/home" element={<Home  />}>
-                </Route>
-                <Route exact path="/playlist" element={<Playlist  />}>
-                </Route>
-              </Routes>
+                </BrowserRouter>
+              </AlertState>
 
-            </BrowserRouter>
+
             </LoginState>
           </PlaylistState>
 

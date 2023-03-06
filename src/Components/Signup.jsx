@@ -1,8 +1,13 @@
 import React, { useContext,useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import AlertContext from '../context/ContextFiles/AlertContext'
 import ModeContext from '../context/ContextFiles/ModeContext'
+import Alert from './Alert'
+
+
 import '../CSS/signup.css'
-const Signup = () => {
+export default function Signup()  {
+    const alertProp = useContext(AlertContext)
     const modeProp = useContext(ModeContext)
     useEffect(modeProp.toggleMode,[modeProp.mode])
     const checkSignUp = async () => {
@@ -24,26 +29,80 @@ const Signup = () => {
         if (!authToken.success) {
             const errorEmailHandler = document.getElementById('emailError')
             const errorUsernameHandler = document.getElementById('usernameError')
-            if (authToken.error === 'Sorry this email already exists') {
+            const errorPassHandler = document.getElementById('passError')
+            console.log(authToken)
+            var params=''
+            if(authToken.errors) {
+
+                const errors = authToken.errors
+                // console.log(errors)
+                 params = errors[0].param
+                 let error = errors[0].msg
+                 if(params === 'password') {
+                    
+                     errorUsernameHandler.innerText = ''
+                     errorEmailHandler.innerText = ''
+                     errorPassHandler.innerText =error
+                     alertProp.showAlert('Could not create Account','danger')
+                 }
+                 else if(params === 'email') {
+                     errorPassHandler.innerText =''
+                    errorUsernameHandler.innerText = ''
+                    errorEmailHandler.innerText = error
+                    alertProp.showAlert('Could not create Account','danger')
+                 }
+                 else  {
+                     errorPassHandler.innerText =''
+                     errorEmailHandler.innerText = ''
+                    errorUsernameHandler.innerText = error
+                    alertProp.showAlert('Could not create Account','danger')
+                 }
+            }
+            // console.log(params)
+            
+            else if (authToken.error === 'Sorry this email already exists') {
+                console.log("hi")
                 errorUsernameHandler.innerText = ''
                 errorEmailHandler.innerText = authToken.error
+                alertProp.showAlert('Could not create Account','danger')
 
+            }
+            else if (authToken.error === 'Sorry this username already exists') {
+                console.log("hi")
+                errorEmailHandler.innerText = ''
+                errorPassHandler.innerText = ''
+                errorUsernameHandler.innerText = authToken.error
+                alertProp.showAlert('Could not create Account','danger')
 
             }
             else {
+                console.log("hi")
                 errorEmailHandler.innerText = ''
-                errorUsernameHandler.innerText = authToken.error
+                errorPassHandler.innerText = ''
+
+                errorUsernameHandler.innerText = ''
+                alertProp.showAlert('Internal Server Error','danger')
+
             }
+            
         }
         else {
             const errorHandler = document.getElementById('emailError')
             errorHandler.innerText = ''
             const errorHandler2 = document.getElementById('usernameError')
             errorHandler2.innerText = ''
+            alertProp.showAlert('Account successfully created','success')
+            setTimeout(() => {
+                
+                window.location.assign("/login");
+            }, 1500);
+            
+            
         }
     }
     return (
         <>
+        <Alert/>
             <div className="signupBox container">
                 <div className="container" style={{ "display": "flex", "justifyContent": "center" }}>
 
@@ -63,7 +122,8 @@ const Signup = () => {
                     <input type="email" id="email" style={{ "width": "100%" }} name="email" placeholder="Email" className="my-2" required /><br />
                     <div ><p id="emailError" className='error'></p></div>
                     <label htmlFor="password">Create Your Password</label><br />
-                    <input type="password" id="password" style={{ "width": "100%" }} name="password" minLength="5" placeholder="Password" className="my-2" required /><br /><br />
+                    <input type="password" id="password" style={{ "width": "100%" }} name="password" minLength="5" placeholder="Password" className="my-2" required /><br />
+                    <div ><p id="passError" className='error'></p></div>
                     <button type="submit" className="signupBtn" onClick={() => checkSignUp()}>Sign Up</button>
 
                 </div>
@@ -77,5 +137,3 @@ const Signup = () => {
         </>
     )
 }
-
-export default Signup

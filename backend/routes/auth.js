@@ -25,7 +25,7 @@ router.post('/createUser',[
       //check if user with this email is present or not
       let user = await User.findOne({email: req.body.email})
       if(user) {
-        return res.status(400).json({error:"Sorry this email already exists"})
+        return res.status(400).json({success:false,error:"Sorry this email already exists"})
       }
       let anotherUser = await User.findOne({username: req.body.username})
       if(anotherUser) {
@@ -79,7 +79,7 @@ router.post('/login',[
     //check if user with this email is present or not
     let user = await User.findOne({email: email})
     if(!user) {
-      return res.status(400).json({error:"Please enter a valid email"})
+      return res.status(400).json({success:false,error:"Please enter a valid email"})
     }
     
       let passCompare = await bcrypt.compare(password,user.password)
