@@ -17,6 +17,8 @@ import Signup from './Components/Signup'
 import Login from './Components/Login'
 
 import AlertState from "./context/StateFiles/AlertState";
+import Search from "./Components/Search";
+import NavbarState from "./context/StateFiles/NavbarState";
 function App() {
 
 
@@ -29,6 +31,8 @@ function App() {
           <PlaylistState>
             <LoginState>
               <AlertState>
+                <NavbarState>
+
                 <BrowserRouter>
 
                   <Routes>
@@ -45,9 +49,12 @@ function App() {
                     </Route>
                     <Route exact path="/playlist" element={<Playlist />}>
                     </Route>
+                    <Route exact path="/search" element={<Search />}>
+                    </Route>
                   </Routes>
 
                 </BrowserRouter>
+                </NavbarState>
               </AlertState>
 
 

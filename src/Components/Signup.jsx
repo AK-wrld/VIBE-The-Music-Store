@@ -1,5 +1,5 @@
 import React, { useContext,useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AlertContext from '../context/ContextFiles/AlertContext'
 import ModeContext from '../context/ContextFiles/ModeContext'
 import Alert from './Alert'
@@ -7,6 +7,7 @@ import Alert from './Alert'
 
 import '../CSS/signup.css'
 export default function Signup()  {
+    const navigate = useNavigate()
     const alertProp = useContext(AlertContext)
     const modeProp = useContext(ModeContext)
     useEffect(modeProp.toggleMode,[modeProp.mode])
@@ -94,7 +95,7 @@ export default function Signup()  {
             alertProp.showAlert('Account successfully created','success')
             setTimeout(() => {
                 
-                window.location.assign("/login");
+                navigate("/login");
             }, 1500);
             
             

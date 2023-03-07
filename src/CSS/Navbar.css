@@ -43,6 +43,7 @@ z-index: 100;
   .searchbtn {
     background-color: white;
     color: black;
+    margin-left: 10px;
   }
 .navbar-nav .nav-item:hover{
     cursor: pointer;
@@ -60,3 +61,4 @@ z-index: 100;
     opacity: 0.5;
     width: 20px;
 }
+

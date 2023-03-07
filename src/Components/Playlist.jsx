@@ -63,7 +63,7 @@ export default function Playlist() {
     playlistProps.isPlaying(true)
       
       const audio = new Audio(url)
-      audio.addEventListener("canplaythrough",  (event) => {
+      audio.addEventListener("canplaythrough",  () => {
         /* the audio is now playable; play it if permissions allow */
          audio.play();
       });

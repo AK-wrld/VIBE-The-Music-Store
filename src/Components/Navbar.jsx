@@ -1,17 +1,35 @@
-import {React,useContext} from 'react'
+import {React,useContext, useEffect} from 'react'
 import '../CSS/Navbar.css'
-import { Link ,useLocation} from 'react-router-dom';
+import { Link ,useLocation, useNavigate, } from 'react-router-dom';
 import rightarrow from '../Images/rightarrow.png'
 import leftarrow from '../Images/leftarrow.png'
 import ModeContext from '../context/ContextFiles/ModeContext';
 import QueueContext from '../context/ContextFiles/QueueContext';
+import NavbarContext from '../context/ContextFiles/NavbarContext';
 
 // import PropTypes from 'prop-types'
 // import  { useState } from 'react'
 export default function Navbar() {
+  const navbar = useContext(NavbarContext)
 const props = useContext(ModeContext)
 const location = useLocation()
+const navigate = useNavigate()
 const q = useContext(QueueContext)
+const checkSearch = ()=> {
+  if(location.pathname!=='/search') {
+    navigate("/search");
+  }
+  
+}
+const handleNavInpChange = (ev)=> {
+  navbar.setNavInp(ev.target.value)
+  console.log(navbar.navInp)
+}
+useEffect(()=>{
+  if(navbar.navInp!==''){
+    navbar.filter()
+  }
+  },[navbar.navInp])
   return (
     <>
  
@@ -53,9 +71,11 @@ const q = useContext(QueueContext)
 
       </ul>
       <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success searchbtn" type="submit">Search</button>
+
+        <input className="form-control me-2" type="search" placeholder="Search" value={navbar.navInp} aria-label="Search" id='navbarInp' onClick={checkSearch} onChange={handleNavInpChange}/>
+        <button className="btn btn-outline-success searchbtn" onClick={(ev)=>ev.preventDefault()} >Search</button>
       </form>
+    
       
     </div>
   </div>
