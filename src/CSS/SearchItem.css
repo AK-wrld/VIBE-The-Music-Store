@@ -1,7 +1,5 @@
-.carousel {
+/* .Carousel {
     display: flex;
-    width: 100%;
-    overflow-x: scroll;
     padding: 30px;
     padding-top: 80px;
     position: relative;
@@ -9,9 +7,11 @@
     box-sizing: border-box;
     width: 70%;
     margin: auto;
-}
+} */
 
 .carousel__container {
+    width: 70%;
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
     white-space: nowrap;
@@ -85,12 +85,11 @@
 }
 
 .carousel-item__details span {
-    /* width: 10px;
-    height: 10px; */
+  
     font-size: 1.3rem;
     margin-right: 10px;
     color: #2ecc71;
-    /* background-color: white; */
+    
 }
 
 .carousel-item__details .controls {

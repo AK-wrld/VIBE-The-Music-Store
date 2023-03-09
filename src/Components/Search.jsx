@@ -16,7 +16,7 @@ const Search = () => {
     <>
     <Navbar/>
     <QueueList/>
-    <section class="Carousel">
+    
 
     <div class="carousel__container">
 
@@ -24,7 +24,7 @@ const Search = () => {
         return <SearchItem key={index} artist ={el.artistName} imgUrl = {el.artworkUrl100} trackname = {el.trackName} audioUrl={el.previewUrl}/>
     }):""}
     </div>
-    </section>
+    
     </>
   )
 }

@@ -11,6 +11,11 @@ import { useSelector } from 'react-redux';
 
 
 export default function Playlist() {
+  const props = useContext(ModeContext)
+  const playlistProps = useContext(PlaylistContext)  
+  const playingQueuee = useSelector((state) => state.playingQueue)
+  const isEmpty = useSelector((state) => state.isEmpty)
+
   const token = window.localStorage.getItem('token')
   if (!token) {
     return window.location = ('/login')
@@ -19,14 +24,14 @@ export default function Playlist() {
   const obj = JSON.parse(window.localStorage.getItem('playlistdata'))
 
 
-  const playlistProps = useContext(PlaylistContext)
+
   useEffect(() => {
     playlistProps.fetchSongs(obj._id)
 
   }, [])
 
   // console.log(playlistProps.songArray)
-  const props = useContext(ModeContext)
+
   useEffect(props.toggleMode, [props.mode])
 
 
@@ -42,61 +47,41 @@ export default function Playlist() {
   }
   useEffect(changeStyle, [props.mode])
 
-  
-  
+
+
   const addSongs = (newarr) => {
     // console.log(newarr)
     const action = createAction("multiAdd", newarr)
     store.dispatch(action)
 
   }
-   const addASong = (el) => {
+  const addASong = (el) => {
     const action = createAction("add", el)
     store.dispatch(action)
-   
+
   }
+
 
  
-  const playingQueuee = useSelector((state) => state.playingQueue)
-  const isEmpty = useSelector((state) => state.isEmpty)
-  const playSong = (url) => {
-    playlistProps.isPlaying(true)
-      
-      const audio = new Audio(url)
-      audio.addEventListener("canplaythrough",  () => {
-        /* the audio is now playable; play it if permissions allow */
-         audio.play();
-      });
-      audio.addEventListener('ended',()=> {
-        audio.pause()
-        playlistProps.isPlaying(false)
-        
-        const action = createAction("removeSong", "")
-        store.dispatch(action)
-        // const unsubscribe = store.subscribe(handleChange )
-        //   unsubscribe();
-        
+  // useEffect(() => {
+  //   if (playlistProps.playBtn === true) {
+  //     console.log("play btn clicked")
+  //     if (isEmpty === false) {
+  //       console.log("not empty")
 
-        
-      })
-    
-  }
-  useEffect(()=> {
-    if(playlistProps.playBtn===true) {
-      console.log("play btn clicked")
-      if(isEmpty===false) {
-        console.log("not empty")
-        
-        if(playlistProps.play===false) {
-          console.log("not playing")
-          console.log(playingQueuee)
-          playSong(playingQueuee[0].url)
-        }
-      }
-    }
+  //       if (playlistProps.play === false) {
+  //         console.log("not playing")
+  //         console.log(playingQueuee)
+  //         playlistProps.playSong(playingQueuee[0].url)
+  //       }
+  //     }
+  //   }
+  //   else {
+  //     console.log('play btn not clicked')
+  //   }
 
-  },[playingQueuee,playlistProps.play,playlistProps.playBtn])
-  
+  // }, [playingQueuee, playlistProps.play, playlistProps.playBtn])
+
   return (
     <div>
       {/* {console.log(props.queue)} */}
@@ -110,8 +95,8 @@ export default function Playlist() {
             <h1 className="my-3 lightPlaylistTitle" id='playlistTitle'> {obj.name} VLBE</h1>
           </div>
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
-          <button className='mb-3 play me-3'id='play' onClick={()=>{isEmpty===false&& playlistProps.play===false? playlistProps.isClicked(true)&& playSong(playingQueuee[0].url):''}}><i className="bi bi-play-fill icon" ></i></button>
-          <button className='mb-3 addToQueue' ><i class="bi bi-plus-square icon"  onClick={() => addSongs(playlistProps.songArray)}></i></button>
+          <button className='mb-3 play me-3' id='play' onClick={() => { isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true) && playlistProps.playSong(playingQueuee[0].url) : '' }}><i className="bi bi-play-fill icon" ></i></button>
+          <button className='mb-3 addToQueue' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
 
         </div>
         <div className="container">
