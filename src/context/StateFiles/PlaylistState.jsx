@@ -113,7 +113,7 @@ const PlaylistState = (props)=> {
       }
     },[playingQueuee])
     return(
-        <PlaylistContext.Provider value={{songArray,setSongs,fetchSongs,playBtn,isClicked,play,isPlaying,}}>
+        <PlaylistContext.Provider value={{songArray,setSongs,fetchSongs,playBtn,isClicked,play,isPlaying,audioRef}}>
             {props.children}
              <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd}></audio>
         </PlaylistContext.Provider>

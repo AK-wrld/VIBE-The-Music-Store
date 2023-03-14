@@ -38,6 +38,26 @@ const SearchItem = (props) => {
     //   }
   
     // }, [playingQueuee, playlistProps.play, playlistProps.playBtn])
+    const priorityAdd = ()=> {
+      if(playlistProps.play===true) {
+        playlistProps.audioRef.current.pause()
+      }
+      
+      const {trackname,audioUrl} = props
+        // console.log(trackname)
+        const song = {
+            name:trackname,
+            url:audioUrl
+
+        }
+        const action = createAction("priorityAdd", song)
+        // console.log(action)
+        store.dispatch(action)
+        playlistProps.audioRef.current.setAttribute('src',playingQueuee[0].url)
+        playlistProps.audioRef.current.play()
+        playlistProps.isClicked(true)
+        
+    }
   return (
     <>
    <div class="carouselItem">
@@ -48,7 +68,8 @@ const SearchItem = (props) => {
           />
           <div class="carousel-item__details">
             <div class="controls">
-              <span class="fas fa-play-circle" onClick={()=> {isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true)  : '' }}></span>
+              {/* <span class="fas fa-play-circle" onClick={()=> {isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true)  : '' }}></span> */}
+              <span class="fas fa-play-circle" onClick={()=> {priorityAdd(props) }}></span>
               {/* <span class="fas fa-play-circle" onClick={()=> playlistProps.playSong(playingQueuee[0].url)}></span> */}
               <span class="fas fa-plus-circle" onClick={()=> {makeSongObj(props)}}></span>
             </div>

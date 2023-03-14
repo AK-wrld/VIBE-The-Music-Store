@@ -14,6 +14,14 @@ const Reducer = (state = {
         // console.log(checkEmpty)
         return { ...state, playingQueue: newarr,isEmpty:checkEmpty  }
     }
+    if (action.type === 'priorityAdd') {
+        const newarr = state.playingQueue
+       
+        newarr.unshift(action.payload)
+        const checkEmpty = newarr.length>0?false:true
+        // console.log(checkEmpty)
+        return { ...state, playingQueue: newarr,isEmpty:checkEmpty  }
+    }
     else if(action.type==='multiAdd') {
         const newarr = state.playingQueue
         const concArr = newarr.concat(...action.payload)
