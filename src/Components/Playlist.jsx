@@ -95,7 +95,7 @@ export default function Playlist() {
             <h1 className="my-3 lightPlaylistTitle" id='playlistTitle'> {obj.name} VLBE</h1>
           </div>
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
-          <button className='mb-3 play me-3' id='play' onClick={() => { isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true) && playlistProps.playSong(playingQueuee[0].url) : '' }}><i className="bi bi-play-fill icon" ></i></button>
+          <button className='mb-3 play me-3' id='play' onClick={() => { isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)&& playlistProps.isPaused(true) }}><i className="bi bi-play-fill icon" ></i></button>
           <button className='mb-3 addToQueue' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
 
         </div>

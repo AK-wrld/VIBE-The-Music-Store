@@ -48,7 +48,7 @@ const SearchItem = (props) => {
           />
           <div class="carousel-item__details">
             <div class="controls">
-              <span class="fas fa-play-circle" onClick={()=> {isEmpty === false && playlistProps.play === false ?  playlistProps.playSong(playingQueuee[0].url) : '' }}></span>
+              <span class="fas fa-play-circle" onClick={()=> {isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true)  : '' }}></span>
               {/* <span class="fas fa-play-circle" onClick={()=> playlistProps.playSong(playingQueuee[0].url)}></span> */}
               <span class="fas fa-plus-circle" onClick={()=> {makeSongObj(props)}}></span>
             </div>
