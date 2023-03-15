@@ -73,19 +73,29 @@ export default function Playlist() {
     const action = createAction("priorityAdd", song)
     // console.log(action)
     store.dispatch(action)
-    if(playlistProps.play===true) {
-      playlistProps.audioRef.current.pause()
-      playlistProps.isPlaying(false)
-    }
-    else {
-      playlistProps.isClicked(true)
-    }
-      // playlistProps.audioRef.current.setAttribute('src',playingQueuee[0].url)
-      // playlistProps.audioRef.current.play()
-      // playlistProps.isClicked(true)
+    playlistProps.isPaused(false)
+    playlistProps.isPlaying(false)
+    playlistProps.isClicked(true)
+   
       
   }
-
+  useEffect(()=> {
+    const play = document.getElementById('play')
+    const icon = play.lastChild
+    // console.log(play)
+    if(playlistProps.playBtn===true) {
+      icon.className = ''
+      icon.classList.add('bi')
+      icon.classList.add('bi-pause')
+      icon.classList.add('icon')
+    }
+    else {
+      icon.className = ''
+      icon.classList.add('bi')
+      icon.classList.add('bi-play-fill')
+      icon.classList.add('icon')
+    }
+  },[playlistProps.playBtn])
   return (
     <div>
       {/* {console.log(props.queue)} */}
@@ -99,8 +109,11 @@ export default function Playlist() {
             <h1 className="my-3 lightPlaylistTitle" id='playlistTitle'> {obj.name} VLBE</h1>
           </div>
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
-          <button className='mb-3 play me-3' id='play' onClick={() => { isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true)  : '' }}><i className="bi bi-play-fill icon" ></i></button>
+         <div className="btns">
+
+          <button className='mb-3 play me-3' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
           <button className='mb-3 addToQueue' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
+         </div>
 
         </div>
         <div className="container">

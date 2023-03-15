@@ -51,17 +51,11 @@ const SearchItem = (props) => {
         const action = createAction("priorityAdd", song)
         // console.log(action)
         store.dispatch(action)
-        if(playlistProps.play===true) {
-          playlistProps.audioRef.current.pause()
+        
+        playlistProps.isPaused(false)
           playlistProps.isPlaying(false)
-
-        }
-        else {
           playlistProps.isClicked(true)
-        }
-        // playlistProps.audioRef.current.setAttribute('src',playingQueuee[0].url)
-        // playlistProps.audioRef.current.play()
-        // playlistProps.isClicked(true)
+        
         
     }
   return (
