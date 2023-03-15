@@ -61,26 +61,30 @@ export default function Playlist() {
 
   }
 
-
- 
-  // useEffect(() => {
-  //   if (playlistProps.playBtn === true) {
-  //     console.log("play btn clicked")
-  //     if (isEmpty === false) {
-  //       console.log("not empty")
-
-  //       if (playlistProps.play === false) {
-  //         console.log("not playing")
-  //         console.log(playingQueuee)
-  //         playlistProps.playSong(playingQueuee[0].url)
-  //       }
-  //     }
-  //   }
-  //   else {
-  //     console.log('play btn not clicked')
-  //   }
-
-  // }, [playingQueuee, playlistProps.play, playlistProps.playBtn])
+  const priorityAdd = (el)=> {
+    
+    const {name,url} = el
+    // console.log(trackname)
+    const song = {
+      name:name,
+      url:url
+      
+    }
+    const action = createAction("priorityAdd", song)
+    // console.log(action)
+    store.dispatch(action)
+    if(playlistProps.play===true) {
+      playlistProps.audioRef.current.pause()
+      playlistProps.isPlaying(false)
+    }
+    else {
+      playlistProps.isClicked(true)
+    }
+      // playlistProps.audioRef.current.setAttribute('src',playingQueuee[0].url)
+      // playlistProps.audioRef.current.play()
+      // playlistProps.isClicked(true)
+      
+  }
 
   return (
     <div>
@@ -95,7 +99,7 @@ export default function Playlist() {
             <h1 className="my-3 lightPlaylistTitle" id='playlistTitle'> {obj.name} VLBE</h1>
           </div>
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
-          <button className='mb-3 play me-3' id='play' onClick={() => { isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)&& playlistProps.isPaused(true) }}><i className="bi bi-play-fill icon" ></i></button>
+          <button className='mb-3 play me-3' id='play' onClick={() => { isEmpty === false && playlistProps.play === false ? playlistProps.isClicked(true)  : '' }}><i className="bi bi-play-fill icon" ></i></button>
           <button className='mb-3 addToQueue' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
 
         </div>
@@ -114,7 +118,7 @@ export default function Playlist() {
               const itemIndex = playlistProps.songArray.indexOf(el);
               return <tbody style={props.textCol} key={el._id} >
 
-                <tr key={el._id} onClick={() => addASong(el)}>
+                <tr key={el._id} onClick={() => priorityAdd(el)}>
                   <th scope="row">{itemIndex}</th>
                   <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'>{el.name}</span></td>
                   <td>{el.artist}</td>

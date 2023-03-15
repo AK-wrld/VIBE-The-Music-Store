@@ -114,9 +114,7 @@ export default function Signup()  {
                     <h2>Sign in to <span className='vibe'>VLBE</span></h2>
                 </div>
                 <div className="container">
-
-
-                    <label htmlFor="username">Your Username</label><br />
+                     <label htmlFor="username">Your Username</label><br />
                     <input type="text" id="username" name="username" style={{ "width": "100%" }} placeholder="Username" className="my-2" required /><br />
                     <div ><p id="usernameError" className='error'></p></div>
                     <label htmlFor="username">Your Email</label><br />

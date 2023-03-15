@@ -67,7 +67,7 @@ const PlaylistState = (props)=> {
   useEffect(() => {
     if (playBtn === true) {
       console.log("play btn clicked")
-      console.log(paused)
+      // console.log(paused)
       if (isEmpty === false) {
         console.log("not empty")
 
