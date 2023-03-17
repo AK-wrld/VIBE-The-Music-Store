@@ -35,6 +35,17 @@ const Reducer = (state = {
           
         
     }
+    else if(action.type==='loopRemove') {
+        const song = state.playingQueue.shift()
+        console.log(song)
+        const newarr = state.playingQueue.concat(song)
+        console.log(newarr)
+        const checkEmpty = newarr.length>0?false:true
+        return {...state,playingQueue:newarr,isEmpty:checkEmpty}
+          
+        
+    }
+    
     else if(action.type==='clearQueue') {
         const newarr = []
         

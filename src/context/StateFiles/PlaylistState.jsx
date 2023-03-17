@@ -14,6 +14,7 @@ const PlaylistState = (props) => {
   const [playBtn, isClicked] = useState(false)
   const [play, isPlaying] = useState(false)
   const [paused, isPaused] = useState(false)
+  const [onLoop,setOnLoop] = useState(false)
   const [songArray, setSongs] = useState([])
   const fetchSongs = async (playlistId) => {
     const response = await fetch(`http://localhost:5000/api/def/${playlistId}`, {
@@ -34,61 +35,24 @@ const PlaylistState = (props) => {
       console.log(json.message)
     }
   }
-  // const playSong = (url) => {
-  //   // console.log(url)
-  //   isClicked(true)
-  //   isPlaying(true)
 
-
-  //   audioRef.current.addEventListener("canplaythrough", () => {
-  //     /* the audio is now playable; play it if permissions allow */
-  //     audio.play();
-  //   });
-  //   audio.addEventListener('ended', () => {
-  //     audio.pause()
-  //     isPlaying(false)
-
-  //     const action = createAction("removeSong", "")
-  //     store.dispatch(action)
-  //     // const unsubscribe = store.subscribe(handleChange )
-  //     //   unsubscribe();
-
-
-
-  //   })
-
-  // }
   const handleAudioEnd = () => {
     isPlaying(false)
-    const action = createAction("removeSong", "")
-    store.dispatch(action)
+    if(onLoop===false) {
+
+      const action = createAction("removeSong", "")
+      store.dispatch(action)
+    }
+    else {
+      console.log('loop happening')
+      const action = createAction("loopRemove", "")
+      store.dispatch(action)
+    }
   }
 
   useEffect(() => {
-    // if (playBtn === true) {
-    //   console.log("play btn clicked")
-    //   // console.log(paused)
-    //   if (isEmpty === false) {
-    //     console.log("not empty")
-
-    //     if (play === false) {
-    //       console.log("not playing")
-    //       console.log(playingQueuee)
-    //       // if(paused===false) {
-
-    //         audioRef.current.setAttribute('src',playingQueuee[0].url)
-    //         console.log(audioRef.current)
-    //         audioRef.current.play()
-    //       // }
-    //       // else {
-    //         audioRef.current.play()
-    //       // }
-    //     isPlaying(true)
-    //     }
-
-    //   }
-    // }
     if (playBtn === true && isEmpty === false && play === false && paused===false) {
+      //play a song from start
       // console.log(playBtn,isEmpty,play,paused)
       audioRef.current.setAttribute('src', playingQueuee[0].url)
       console.log(audioRef.current)
@@ -96,13 +60,15 @@ const PlaylistState = (props) => {
       isPlaying(true)
     }
     if (playBtn === true && isEmpty === false && play === false && paused===true) {
-      
+      //play a song from wherever it is paused
       // console.log(playBtn,isEmpty,play,paused)
       console.log(audioRef.current)
       audioRef.current.play()
       isPlaying(true)
+      isPaused(false)
     }
     else if(playBtn === false && isEmpty === false && play === true) {
+      //current song is paused
       // console.log(playBtn,isEmpty,play,paused)
       audioRef.current.pause()
       audioRef.current.currentTime = audioRef.current.currentTime
@@ -127,8 +93,9 @@ const PlaylistState = (props) => {
       console.log('not empty')
     }
   }, [playingQueuee])
+
   return (
-    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused }}>
+    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop }}>
       {props.children}
       <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd}></audio>
     </PlaylistContext.Provider>

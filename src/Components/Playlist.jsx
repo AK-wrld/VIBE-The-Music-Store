@@ -109,10 +109,11 @@ export default function Playlist() {
             <h1 className="my-3 lightPlaylistTitle" id='playlistTitle'> {obj.name} VLBE</h1>
           </div>
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
-         <div className="btns">
+         <div className="btns mb-3">
 
-          <button className='mb-3 play me-3' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
-          <button className='mb-3 addToQueue' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
+          <button className='play playlistBtn' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
+          <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
+          <button className='addToQueue playlistBtn' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} ><i class="bi bi-infinity icon"></i></button>
          </div>
 
         </div>
