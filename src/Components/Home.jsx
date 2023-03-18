@@ -12,20 +12,14 @@ import '../CSS/home.css'
 import ModeContext from '../context/ContextFiles/ModeContext'
 import LoginContext from '../context/ContextFiles/LoginContext'
 import QueueContext from '../context/ContextFiles/QueueContext'
+import BottomPlayer from './BottomPlayer'
+import { useSelector } from 'react-redux'
 export default function Home() {
   const q = useContext(QueueContext)
   const loginProp = useContext(LoginContext)
   const props = useContext(ModeContext)
+  const isEmpty = useSelector((state) => state.isEmpty)
     useEffect(props.toggleMode,[props.mode])
-    // const checkPlay = ()=> {
-    //   if(q.play === true && q.empty ===false) {
-    //     q.GetASong()
-    //   }
-    // }
-    // useEffect(checkPlay,[])
-    // useEffect(()=> {
-    //   if(q.empty)
-    // },[])
   const [progress, setProgress] = useState(100)
   
   const changeProgress = (progress)=> {
@@ -60,6 +54,7 @@ export default function Home() {
      <h1 style={props.textCol} className='homeTitle' id='defVibeTitle'> <span className='vibe'>VLBE</span>  we created for You</h1>
      <Carousel />
       </div>
+      {!isEmpty?<BottomPlayer/>:''}
     </>
   )
 }

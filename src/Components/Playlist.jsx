@@ -8,6 +8,7 @@ import PlaylistContext from '../context/ContextFiles/PlaylistContext'
 import { createAction } from '../action';
 import store from '../store';
 import { useSelector } from 'react-redux';
+import BottomPlayer from './BottomPlayer'
 
 
 export default function Playlist() {
@@ -15,7 +16,7 @@ export default function Playlist() {
   const playlistProps = useContext(PlaylistContext)  
   const playingQueuee = useSelector((state) => state.playingQueue)
   const isEmpty = useSelector((state) => state.isEmpty)
-
+  
   const token = window.localStorage.getItem('token')
   if (!token) {
     return window.location = ('/login')
@@ -63,11 +64,13 @@ export default function Playlist() {
 
   const priorityAdd = (el)=> {
     
-    const {name,url} = el
+    const {name,url,artist,img} = el
     // console.log(trackname)
     const song = {
       name:name,
-      url:url
+      url:url,
+      artist:artist,
+      img:img
       
     }
     const action = createAction("priorityAdd", song)
@@ -97,7 +100,7 @@ export default function Playlist() {
     }
   },[playlistProps.playBtn])
   return (
-    <div>
+    <>
       {/* {console.log(props.queue)} */}
       <Navbar />
       <QueueList />
@@ -113,7 +116,7 @@ export default function Playlist() {
 
           <button className='play playlistBtn' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
           <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
-          <button className='addToQueue playlistBtn' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} ><i class="bi bi-infinity icon"></i></button>
+          <button className='playlistBtn' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} ><i class="bi bi-infinity icon"></i></button>
          </div>
 
         </div>
@@ -146,6 +149,7 @@ export default function Playlist() {
         </div>
 
       </div>
-    </div>
+      {!isEmpty?<BottomPlayer/>:''}
+    </>
   )
 }

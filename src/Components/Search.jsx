@@ -5,11 +5,13 @@ import Navbar from './Navbar'
 import QueueList from './QueueList'
 import SearchItem from './SearchItem'
 import '../CSS/SearchItem.css'
-
+import BottomPlayer from './BottomPlayer'
+import { useSelector } from 'react-redux'
 
 const Search = () => {
     const props = useContext(ModeContext)
     const navbar = useContext(NavbarContext)
+    const isEmpty = useSelector((state) => state.isEmpty)
     useEffect(props.toggleMode,[props.mode])
     // console.log(navbar.results)
   return (
@@ -24,7 +26,7 @@ const Search = () => {
         return <SearchItem key={index} artist ={el.artistName} imgUrl = {el.artworkUrl100} trackname = {el.trackName} audioUrl={el.previewUrl}/>
     }):""}
     </div>
-    
+    {!isEmpty?<BottomPlayer/>:''}
     </>
   )
 }

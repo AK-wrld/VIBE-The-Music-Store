@@ -66,6 +66,7 @@ font-size: 35px;
 
 .table {
     width: 1200px;
+    margin: 0px !important;
 }
 tbody, td, tfoot, th, thead, tr {
     border-style: none;

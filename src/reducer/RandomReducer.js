@@ -1,11 +1,10 @@
 
 const Reducer = (state = {
     playingQueue: [],
-    nextSong:'',
- 
+   
   isEmpty:true
 }, action) => {
-    // }
+
     if (action.type === 'add') {
         const newarr = state.playingQueue
        

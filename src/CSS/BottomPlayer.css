@@ -1,0 +1,141 @@
+
+.bottom {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  border-top: 1px solid #000;
+  background-color: rgba(24, 24, 24, 1);
+  z-index: 1;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: left 300ms;
+  left: 0;
+  width: 100%;
+}
+
+.bottom-bar-song {
+  display: flex;
+}
+
+.bottom-bar-song-img img {
+  height: 56px;
+  width: 56px;
+}
+
+.bottom-bar-song-img img {
+  height: 56px;
+  width: 56px;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2);
+}
+
+.bottom-bar-song-img {
+  margin-right: 14px;
+  display: flex;
+  position: relative;
+}
+
+.bottom-bar-song-details {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin-right: 14px;
+}
+
+.bottom-bar-song-details-wrapper {
+  display: block;
+  line-height: 17px;
+}
+
+.bottom-bar-song-details a {
+  display: inline;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 0;
+}
+
+.bottom-bar-song-details a:hover {
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.bottom-bar-song-details-title {
+  font-size: 0.875rem;
+}
+
+.bottom-bar-song-details-artist {
+  font-size: 0.75rem;
+}
+
+.bottom-bar-progress{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 98%;
+  flex-direction: column;
+  position: fixed;
+  bottom: 2%;
+}
+
+
+#myProgressBar{
+  width: 500px;
+  height: 4px;
+  /* margin-bottom: 10px; */
+  cursor: pointer;
+}
+
+#myProgressBar::-webkit-slider-thumb {
+  background-color: gray;
+}
+
+/* #myProgressBar::-webkit-slider-runnable-track {
+  background-color: rgba(128, 0, 128, 0.5);
+} */
+
+
+.icons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icons i {
+  color: #fff;
+  cursor: pointer;
+  font-size: 24px; 
+  margin: 0 10px; 
+}
+/* .righticons {
+  position: absolute;
+  right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+.righticons i {
+  font-size: 24px;
+  color: #fff;
+}
+#volume{
+  color: #fff;
+  
+} */
+.footerBtn {
+  background-color: transparent;
+  border: none;
+}

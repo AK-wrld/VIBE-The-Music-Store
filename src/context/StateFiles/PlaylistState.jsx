@@ -16,6 +16,7 @@ const PlaylistState = (props) => {
   const [paused, isPaused] = useState(false)
   const [onLoop,setOnLoop] = useState(false)
   const [songArray, setSongs] = useState([])
+  const [progressBar,setProgressBarValue] = useState(0)
   const fetchSongs = async (playlistId) => {
     const response = await fetch(`http://localhost:5000/api/def/${playlistId}`, {
       method: "GET",
@@ -35,9 +36,16 @@ const PlaylistState = (props) => {
       console.log(json.message)
     }
   }
+  const handleTimeUpdate = ()=> {
+    const progress = parseInt((audioRef.current.currentTime/audioRef.current.duration)*100)
+    // console.log(progress)
+
+    setProgressBarValue(progress)
+  }
 
   const handleAudioEnd = () => {
     isPlaying(false)
+    
     if(onLoop===false) {
 
       const action = createAction("removeSong", "")
@@ -52,8 +60,7 @@ const PlaylistState = (props) => {
 
   useEffect(() => {
     if (playBtn === true && isEmpty === false && play === false && paused===false) {
-      //play a song from start
-      // console.log(playBtn,isEmpty,play,paused)
+      console.log(playingQueuee)
       audioRef.current.setAttribute('src', playingQueuee[0].url)
       console.log(audioRef.current)
       audioRef.current.play()
@@ -93,11 +100,11 @@ const PlaylistState = (props) => {
       console.log('not empty')
     }
   }, [playingQueuee])
-
+  
   return (
-    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop }}>
+    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop,progressBar,setProgressBarValue, }}>
       {props.children}
-      <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd}></audio>
+      <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd} onTimeUpdate={handleTimeUpdate}></audio>
     </PlaylistContext.Provider>
   )
 }
