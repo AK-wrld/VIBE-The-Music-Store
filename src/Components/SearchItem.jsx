@@ -9,12 +9,13 @@ const SearchItem = (props) => {
   const playingQueuee = useSelector((state) => state.playingQueue)
   const isEmpty = useSelector((state) => state.isEmpty)
     const makeSongObj = (props)=> {
-        const {trackname,audioUrl} = props
+        const {trackname,audioUrl,artist,imgUrl} = props
         // console.log(trackname)
         const song = {
             name:trackname,
-            url:audioUrl
-
+            url:audioUrl,
+            artist:artist,
+            img:imgUrl
         }
         const action = createAction("add", song)
         // console.log(action)
