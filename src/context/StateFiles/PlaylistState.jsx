@@ -38,6 +38,7 @@ const PlaylistState = (props) => {
   }
   const handleTimeUpdate = ()=> {
     const progress = parseInt((audioRef.current.currentTime/audioRef.current.duration)*100)
+    // console.log(audioRef.current.currentTime)
     // console.log(progress)
 
     setProgressBarValue(progress)
@@ -100,7 +101,15 @@ const PlaylistState = (props) => {
       console.log('not empty')
     }
   }, [playingQueuee])
-  
+  useEffect(()=> {
+    if(audioRef.current.currentTime===100) {
+      console.log('audio ended')
+      handleAudioEnd()
+    }
+    else {
+      console.log('audio still playing')
+    }
+  },[audioRef])
   return (
     <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop,progressBar,setProgressBarValue, }}>
       {props.children}
