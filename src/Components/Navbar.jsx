@@ -6,6 +6,8 @@ import leftarrow from '../Images/leftarrow.png'
 import ModeContext from '../context/ContextFiles/ModeContext';
 import QueueContext from '../context/ContextFiles/QueueContext';
 import NavbarContext from '../context/ContextFiles/NavbarContext';
+import ProfileContext from '../context/ContextFiles/ProfileContext'
+
 
 // import PropTypes from 'prop-types'
 // import  { useState } from 'react'
@@ -15,6 +17,7 @@ const props = useContext(ModeContext)
 const location = useLocation()
 const navigate = useNavigate()
 const q = useContext(QueueContext)
+const profileProps = useContext(ProfileContext)
 const checkSearch = ()=> {
   if(location.pathname!=='/search') {
     navigate("/search");
@@ -54,7 +57,7 @@ useEffect(()=>{
         </li>
         
         <li className="nav-item">
-          <a className={`nav-link`}>My Profile</a>
+        <Link className="nav-link" onClick={()=>{profileProps.Profile==='hidden'?profileProps.showProfile('show'):profileProps.showProfile('hidden')}}>My Profile</Link>
         </li>
         <li className="nav-item">
 

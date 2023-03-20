@@ -35,9 +35,7 @@ const Login = () => {
       const errorHandler = document.getElementById('error')
       errorHandler.innerText = ''
       window.localStorage.setItem('token',authtoken.authToken)
-      
-      
-      getLoggedinUserData(authtoken.authToken)
+      window.location.assign('/home')
     }
     else {
       
@@ -75,28 +73,7 @@ const Login = () => {
     
   }
 
-  const getLoggedinUserData = async (authToken) => {
-    // console.log(authToken)
-    const response = await fetch('http://localhost:5000/api/auth/getuser', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": authToken
 
-      },
-
-    });
-    let userData = await response.json();
-    if(userData.success) {
-
-      window.localStorage.setItem('userData',JSON.stringify(userData))
-      window.location.assign("/home");
-    }
-    else {
-      console.log(userData.error)
-    }
-  }
-  
  
   return (
     <>
