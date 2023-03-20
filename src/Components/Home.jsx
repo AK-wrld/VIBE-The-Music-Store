@@ -13,6 +13,7 @@ import ModeContext from '../context/ContextFiles/ModeContext'
 import LoginContext from '../context/ContextFiles/LoginContext'
 import QueueContext from '../context/ContextFiles/QueueContext'
 import BottomPlayer from './BottomPlayer'
+import ProfileList from './ProfileList'
 import { useSelector } from 'react-redux'
 export default function Home() {
   const q = useContext(QueueContext)
@@ -47,14 +48,18 @@ export default function Home() {
       <div className="container my-3">
 
      <QueueList  />
+     <ProfileList/>
      
      <h1 style={props.textCol} className='homeTitle' >Create your own <span className='vibe'>VLBE</span>  </h1>
      <Cards/>
      <h3 style={props.textCol} className='homeTitle' >Haven't created a <span className='vibe'>VLBE</span>  yet? Dont worry we got you covered</h3>
      <h1 style={props.textCol} className='homeTitle' id='defVibeTitle'> <span className='vibe'>VLBE</span>  we created for You</h1>
      <Carousel />
+     
       </div>
       {!isEmpty?<BottomPlayer/>:''}
+    
     </>
+    
   )
 }

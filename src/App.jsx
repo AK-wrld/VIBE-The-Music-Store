@@ -19,6 +19,7 @@ import Login from './Components/Login'
 import AlertState from "./context/StateFiles/AlertState";
 import Search from "./Components/Search";
 import NavbarState from "./context/StateFiles/NavbarState";
+import ProfileState from "./context/StateFiles/ProfileState";
 function App() {
 
 
@@ -32,7 +33,7 @@ function App() {
             <LoginState>
               <AlertState>
                 <NavbarState>
-
+                  <ProfileState>
                 <BrowserRouter>
 
                   <Routes>
@@ -52,8 +53,11 @@ function App() {
                     <Route exact path="/search" element={<Search />}>
                     </Route>
                   </Routes>
+                
 
                 </BrowserRouter>
+                </ProfileState>
+
                 </NavbarState>
               </AlertState>
 

@@ -1,0 +1,100 @@
+.ProfileList {
+    width: 330px;
+    height: 92vh;
+    background-color: bisque;
+    position: fixed;
+    right: 0px;
+    top: 55px;
+    /* transform: translateX(-100%); */
+    transition: transform 1s;
+    text-align: center;
+    z-index: 100;
+}
+.Profilebtn {
+    width: 50px;
+    height: 56px;
+    /* transform: translateX(-100%); */
+    position: fixed;
+    right: 0px;
+    top: 55px;
+    background-color: transparent;
+    border: none;
+    filter: invert(1) opacity(0.7);
+    /* transform: translateX(0px); */
+    z-index: 1;
+    transition: position 1s,transform 1s;
+}
+.Profilebtn:hover {
+    filter: opacity(1) invert(1);
+}
+.Profilebtn>img {
+    width: 50px;
+}
+.ProfileList > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ProfileList > ul > li {
+    list-style: decimal;
+}
+.Profileimg{
+    margin-left: 90px;
+}
+.Nameheading{
+    margin-top: 160px;
+    margin-left: 12px;
+}
+
+.navigation {
+  width: 100%;
+  background-color: black;
+  margin-top: 300px;
+  
+}
+
+img {
+  width: 25px;
+  border-radius: 50px;
+  float: left;
+}
+
+.logout {
+  font-size: .8em;
+  font-family: 'Oswald', sans-serif;
+	position: relative;
+  right: -18px;
+  bottom: -4px;
+  overflow: hidden;
+  letter-spacing: 3px;
+  opacity: 0;
+  transition: opacity .45s;
+  -webkit-transition: opacity .35s;
+  
+}
+
+.buttonLogout {
+	text-decoration: none;
+	float: right;
+  padding: 12px;
+  margin: 15px;
+  color: white;
+  width: 125px;
+  background-color: black;
+  transition: width .35s;
+  -webkit-transition: width .35s;
+  overflow: hidden
+}
+
+#profileLogout:hover {
+  width: 200px;
+}
+
+#profileLogout:hover .logout{
+  opacity: .9;
+}
+
+#profileLogout {
+  text-decoration: none;
+}
+
