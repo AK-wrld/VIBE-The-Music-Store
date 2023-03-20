@@ -20,7 +20,7 @@ const songs = new Schema({
     },
     img: {
         type: String,
-        default : 'https://pin.it/62qltKp'
+        default : 'https://pin.it/62qltKp' 
     },
     date: {
         type:String
