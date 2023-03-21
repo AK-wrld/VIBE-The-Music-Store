@@ -4,7 +4,7 @@ import '../CSS/Modal.css'
 function Model() {
   return (
     <div>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal</button>
+      {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal</button> */}
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -24,10 +24,10 @@ function Model() {
             <textarea class="form-control" id="message-text"></textarea>
           </div>
         </form>
+        <button type="button" class="btn btn-info">Choose Photo</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
-        <button type="button" class="btn btn-info">Change Pic</button>
         <button type="button" class="btn btn-primary">Save</button>
         
       </div>

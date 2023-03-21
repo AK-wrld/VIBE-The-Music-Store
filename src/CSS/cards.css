@@ -12,8 +12,9 @@
 }
 .card-body > h5{
   color: purple;
-  font-family: 'Gotham', sans-serif;
-  font-size: large;
+    font-family: 'Gotham', sans-serif;
+    font-size: medium;
+    text-align: center;
 }
 .card-text {
   color: gray;
