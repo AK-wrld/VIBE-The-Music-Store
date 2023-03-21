@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const userPlaylist = require('../models/UserPlaylist')
 const userSongs = require('../models/UserSongs')
-const userSongs = require('../models/UserSongs')
 
 
 // Getting user playlists
@@ -27,7 +26,8 @@ router.post('/addUserPlaylist', async (req, res) => {
     try { 
         const { user, name, quote, img } = req.body
     const oldPlaylists = await userPlaylist.find({name})
-    if (!oldPlaylists) {
+    // console.log(oldPlaylists)
+    if (oldPlaylists.length == 0) {
         const newPlaylists = await userPlaylist.create({
             user, name, quote, img
         })
@@ -80,9 +80,10 @@ router.get('/deleteUserPlaylist/:_id', async (req, res) => {
 
 router.get('/getusersongs/:_id', async (req, res) => {
     const {_id} = req.params
+    // console.log(_id)
     try {
-        const userSongs = await userSongs.find({playlist:_id})
-        res.status(200).json({success:true,userSongs})
+        const fetchSongs = await userSongs.find({playlist:_id})
+        res.status(200).json({success:true,fetchSongs})
     } catch {
 
         res.status(500).json({ success: "false", "message": "Internal server error" })
@@ -96,7 +97,7 @@ router.post('/addusersong', async (req, res) => {
     try {
         const { playlist, name, url, artist, img, date } = req.body
         const oldSongs = await userSongs.find({url})
-        if (!oldSongs) {
+        if (oldSongs.length == 0) {
             const newSong = await userSongs.create({
             playlist, name, url, artist, img, date
         })
@@ -124,3 +125,5 @@ router.post('/deleteusersong', async (req, res) => {
     }
 
 })
+
+module.exports = router

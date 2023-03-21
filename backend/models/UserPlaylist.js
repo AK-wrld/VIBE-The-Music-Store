@@ -23,5 +23,5 @@ const userPlaylistSchema = new Schema({
 
 });
 
-const userPlaylist = mongoose.model('userPlaylist',userPlaylistSchema)
+const userPlaylist = mongoose.model('userplaylists',userPlaylistSchema)
 module.exports = userPlaylist
