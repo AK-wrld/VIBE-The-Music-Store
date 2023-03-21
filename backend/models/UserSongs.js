@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const songs = new Schema({
+const userSongsSchema = new Schema({
+
     playlist: {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'defaultPlaylists'
+        ref : 'userPlaylist'
     },
     name: {
         type: String,
@@ -25,7 +26,12 @@ const songs = new Schema({
     date: {
         type:String
     }
-   
-  });
-  const Song = mongoose.model('songs',songs)
-  module.exports = Song
+
+});
+
+const userSongs = mongoose.model('userSongs',userSongsSchema)
+module.exports = userSongs
+
+
+
+

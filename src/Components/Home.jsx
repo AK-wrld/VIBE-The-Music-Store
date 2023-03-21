@@ -14,6 +14,7 @@ import LoginContext from '../context/ContextFiles/LoginContext'
 import QueueContext from '../context/ContextFiles/QueueContext'
 import BottomPlayer from './BottomPlayer'
 import ProfileList from './ProfileList'
+import Modal from './Modal'
 import { useSelector } from 'react-redux'
 export default function Home() {
   const q = useContext(QueueContext)
@@ -49,6 +50,7 @@ export default function Home() {
 
      <QueueList  />
      <ProfileList/>
+     <Modal/>
      
      <h1 style={props.textCol} className='homeTitle' >Create your own <span className='vibe'>VLBE</span>  </h1>
      <Cards/>

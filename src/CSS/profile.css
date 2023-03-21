@@ -1,7 +1,7 @@
 .ProfileList {
     width: 330px;
     height: 92vh;
-    background-color: bisque;
+    /* background-color: bisque; */
     position: fixed;
     right: 0px;
     top: 55px;
@@ -51,12 +51,6 @@
   background-color: black;
   margin-top: 300px;
   
-}
-
-img {
-  width: 25px;
-  border-radius: 50px;
-  float: left;
 }
 
 .logout {
