@@ -104,7 +104,9 @@ export default function ProfileList() {
 
         <div class="navigation">
           <a class="buttonLogout" id="profileLogout" href="">
-            <img  src="https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png" />
+
+            <img src="https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png" />
+
 
             <div class="logout">LOGOUT</div>
           </a>
