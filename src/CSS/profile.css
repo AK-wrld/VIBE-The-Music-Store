@@ -53,12 +53,6 @@
   
 }
 
-img {
-  width: 25px;
-  border-radius: 50px;
-  float: left;
-}
-
 .logout {
   font-size: .8em;
   font-family: 'Oswald', sans-serif;
