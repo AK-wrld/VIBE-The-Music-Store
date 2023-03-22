@@ -17,7 +17,7 @@ const userPlaylistSchema = new Schema({
     },
     img: {
         type: String,
-        default : 'https://pin.it/62qltKp'
+        default : 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fcb2c7102027459.5f2cc34b5cebc.png'
     },
 
 

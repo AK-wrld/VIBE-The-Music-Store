@@ -34,7 +34,7 @@ const ProfileState = (props)=> {
         });
         let userData = await response.json();
         if (userData.success) {
-          console.log(userData)
+          // console.log(userData)
           setUser(userData.user)
 
         }

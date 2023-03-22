@@ -8,7 +8,8 @@ const userSongs = require('../models/UserSongs')
 
 router.get('/getUserPlaylist/:_id', async (req, res) => {
 
-    try { const {_id} = req.params
+    try { 
+    const {_id} = req.params
     const userPlaylists = await userPlaylist.find({user:_id})
     res.status(200).json({ "success": true, userPlaylists})
         

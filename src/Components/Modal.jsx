@@ -4,13 +4,16 @@ import { UploadButton } from "react-uploader";
 import '../CSS/Modal.css'
 import ProfileContext from '../context/ContextFiles/ProfileContext';
 import AlertContext from '../context/ContextFiles/AlertContext';
+import CardsContext from '../context/ContextFiles/CardsContext';
 const uploader = Uploader({ apiKey: "public_12a1y4W92rvGsWT6PTzPXWBNPkQP" })
 function Model() {
-  const [imgUrl,setFileUrl] = useState('https://pin.it/62qltKp')
+  const [imgUrl,setFileUrl] = useState('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fcb2c7102027459.5f2cc34b5cebc.png')
   const [name,setName] = useState('')
   const [quote,setQuote] = useState('')
   const profileProps = useContext(ProfileContext)
   const alertProp = useContext(AlertContext)
+  const cardsProps = useContext(CardsContext)
+  
 //   useEffect(()=> {
 // console.log(quote)
 //   },[quote])
@@ -27,8 +30,22 @@ const removeData = ()=> {
   console.log(name)
   setName('')
   setQuote('')
-  setFileUrl('https://pin.it/62qltKp')
+  setFileUrl('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fcb2c7102027459.5f2cc34b5cebc.png')
+  cardsProps.getUserPlaylist()
 }
+const getUserPlaylist = async () => {
+  console.log('called')
+  const _id = profileProps.User._id
+  console.log(_id)
+  const response = await fetch(`http://localhost:5000/api/user/getUserPlaylist/${profileProps.User._id}`)
+
+  const data = await response.json()
+  // console.log(data)
+  if (data.success) {
+    setUserPlaylist(data.userPlaylists)
+  }
+}
+
 const addNewPlaylist = async(ev)=> {
 ev.preventDefault()
 const playlistNameError = document.getElementsByClassName('playlistNameError')[0]
@@ -47,7 +64,7 @@ const playlistNameError = document.getElementsByClassName('playlistNameError')[0
     }
     const response = await fetch('http://localhost:5000/api/user/addUserPlaylist', {
       method: "POST", 
-      
+  
       headers: {
         "Content-Type": "application/json",
         // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -66,7 +83,7 @@ const playlistNameError = document.getElementsByClassName('playlistNameError')[0
       alertProp.showAlert('New Vibe successfully created','success')
       setTimeout(() => {
         
-        window.location.reload()
+        
       }, 700);
       
     }

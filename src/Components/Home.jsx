@@ -35,6 +35,7 @@ export default function Home() {
   return window.location = ('/login')
  }
  
+ 
   return (
     <>
     {/* {console.log(props.mode)} */}
