@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import CardsContext from '../context/ContextFiles/CardsContext'
 import ProfileContext from '../context/ContextFiles/ProfileContext'
 import '../CSS/cards.css'
@@ -7,16 +8,13 @@ function Cards() {
   const profileProps = useContext(ProfileContext)
   const cardsProps = useContext(CardsContext)
   
-  // console.log(_id)
-
-  //  getUserPlaylist()
   useEffect(() => {
     
     cardsProps.getUserPlaylist()
   }, [profileProps.User])
-  // useEffect(() => {
-  //   console.log(userPlaylist)
-  // }, [userPlaylist])
+  const setUserPlaylistDetails =(name,quote,img,_id)=> {
+    window.localStorage.setItem('userPlaylist', JSON.stringify({ name: name,quote:quote,img:img,_id:_id }))
+  }
 
   return (
     cardsProps.userPlaylist && <>
@@ -28,18 +26,21 @@ function Cards() {
           {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal</button> */}
         </div>
       </div>
+     
       {
+        
         cardsProps.userPlaylist.map((el)=> {
-          return <div class="card myCard" style={{ "width": "10rem" }} key = {el._id}>
+          return <Link class="card myCard" style={{ "width": "10rem" }} key = {el._id} onClick={()=>setUserPlaylistDetails(el.name,el.quote,el.img,el._id)} to='/userplaylist'>
           <img class="card-img-top" src={el.img} alt="..." />
           <div class="card-body">
             <h5>{el.name}</h5>
             <h6>{el.quote}</h6>
             {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal</button> */}
           </div>
-        </div>
+        </Link>
         })
       }
+      
     </div>
       
       

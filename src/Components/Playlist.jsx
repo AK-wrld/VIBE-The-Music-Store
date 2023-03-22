@@ -9,6 +9,7 @@ import { createAction } from '../action';
 import store from '../store';
 import { useSelector } from 'react-redux';
 import BottomPlayer from './BottomPlayer'
+import ProfileList from './ProfileList';
 
 
 export default function Playlist() {
@@ -104,6 +105,7 @@ export default function Playlist() {
       {/* {console.log(props.queue)} */}
       <Navbar />
       <QueueList />
+      <ProfileList/>
       <div className="container main">
         <div className="container">
           <div className="container photoTitleContainer">
@@ -136,7 +138,7 @@ export default function Playlist() {
               return <tbody style={props.textCol} key={el._id} >
 
                 <tr key={el._id} onClick={() => priorityAdd(el)}>
-                  <th scope="row">{itemIndex}</th>
+                  <th scope="row">{itemIndex+1}</th>
                   <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'>{el.name}</span></td>
                   <td>{el.artist}</td>
                   <td><p style={{ padding: "0px 2px" }}>{el.date.split('T')[0]}</p></td>
