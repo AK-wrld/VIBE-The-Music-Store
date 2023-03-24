@@ -20,6 +20,8 @@ import AlertState from "./context/StateFiles/AlertState";
 import Search from "./Components/Search";
 import NavbarState from "./context/StateFiles/NavbarState";
 import ProfileState from "./context/StateFiles/ProfileState";
+import CardsState from "./context/StateFiles/CardsState";
+import UserPlaylist from "./Components/UserPlaylist";
 function App() {
 
 
@@ -34,29 +36,35 @@ function App() {
               <AlertState>
                 <NavbarState>
                   <ProfileState>
-                <BrowserRouter>
+                    <CardsState>
 
-                  <Routes>
-                    <Route exact path="/" element={<Landing />}>
-                      {/* exact path instead of path is used to avoid partial matching of react */}
-                    </Route>
-                    <Route exact path="/signup" element={<Signup />}>
-                      {/* exact path instead of path is used to avoid partial matching of react */}
-                    </Route>
-                    <Route exact path="/login" element={<Login />}>
-                      {/* exact path instead of path is used to avoid partial matching of react */}
-                    </Route>
-                    <Route exact path="/home" element={<Home />}>
-                    </Route>
-                    <Route exact path="/playlist" element={<Playlist />}>
-                    </Route>
-                    <Route exact path="/search" element={<Search />}>
-                    </Route>
-                  </Routes>
-                
 
-                </BrowserRouter>
-                </ProfileState>
+                      <BrowserRouter>
+
+                        <Routes>
+                          <Route exact path="/" element={<Landing />}>
+                            {/* exact path instead of path is used to avoid partial matching of react */}
+                          </Route>
+                          <Route exact path="/signup" element={<Signup />}>
+                            {/* exact path instead of path is used to avoid partial matching of react */}
+                          </Route>
+                          <Route exact path="/login" element={<Login />}>
+                            {/* exact path instead of path is used to avoid partial matching of react */}
+                          </Route>
+                          <Route exact path="/home" element={<Home />}>
+                          </Route>
+                          <Route exact path="/playlist" element={<Playlist />}>
+                          </Route>
+                          <Route exact path="/userplaylist" element={<UserPlaylist/>}>
+                          </Route>
+                          <Route exact path="/search" element={<Search />}>
+                          </Route>
+                        </Routes>
+
+
+                      </BrowserRouter>
+                    </CardsState>
+                  </ProfileState>
 
                 </NavbarState>
               </AlertState>

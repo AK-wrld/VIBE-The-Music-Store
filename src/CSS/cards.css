@@ -1,3 +1,11 @@
+#cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
 .myCard {
   height: 35vh;
   background-color: blanchedalmond;
@@ -11,6 +19,12 @@
   height: 140px;
 }
 .card-body > h5{
+  color: purple;
+    font-family: 'Gotham', sans-serif;
+    font-size: medium;
+    text-align: center;
+}
+.card-body > h6{
   color: purple;
     font-family: 'Gotham', sans-serif;
     font-size: medium;

@@ -1,34 +1,131 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { Uploader } from "uploader";
+import { UploadButton } from "react-uploader";
 import '../CSS/Modal.css'
-
+import ProfileContext from '../context/ContextFiles/ProfileContext';
+import AlertContext from '../context/ContextFiles/AlertContext';
+import CardsContext from '../context/ContextFiles/CardsContext';
+const uploader = Uploader({ apiKey: "public_12a1y4W92rvGsWT6PTzPXWBNPkQP" })
 function Model() {
+  const [imgUrl,setFileUrl] = useState('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fcb2c7102027459.5f2cc34b5cebc.png')
+  const [name,setName] = useState('')
+  const [quote,setQuote] = useState('')
+  const profileProps = useContext(ProfileContext)
+  const alertProp = useContext(AlertContext)
+  const cardsProps = useContext(CardsContext)
+  
+//   useEffect(()=> {
+// console.log(quote)
+//   },[quote])
+const changeName =(event)=> {
+  setName(event.target.value)
+  
+}
+const changeQuote =(event)=> {
+  setQuote(event.target.value)
+  
+}
+const removeData = ()=> {
+  // console.log('removing data')
+  console.log(name)
+  setName('')
+  setQuote('')
+  setFileUrl('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fcb2c7102027459.5f2cc34b5cebc.png')
+  cardsProps.getUserPlaylist()
+}
+const getUserPlaylist = async () => {
+  console.log('called')
+  const _id = profileProps.User._id
+  console.log(_id)
+  const response = await fetch(`http://localhost:5000/api/user/getUserPlaylist/${profileProps.User._id}`)
+
+  const data = await response.json()
+  // console.log(data)
+  if (data.success) {
+    setUserPlaylist(data.userPlaylists)
+  }
+}
+
+const addNewPlaylist = async(ev)=> {
+ev.preventDefault()
+const playlistNameError = document.getElementsByClassName('playlistNameError')[0]
+  if(name.length===0) {
+    // console.log('nahi jaega')
+    
+    playlistNameError.innerText = 'Name is required'
+  }
+  else {
+    playlistNameError.innerText = ''
+    const playlistObj = {
+      user : profileProps.User._id,
+      name: name,
+      quote: quote,
+      img: imgUrl
+    }
+    const response = await fetch('http://localhost:5000/api/user/addUserPlaylist', {
+      method: "POST", 
+  
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(playlistObj), // body data type must match "Content-Type" header
+    });
+    const data = await response.json()
+    if(data.success===false) {
+      alertProp.showAlert(data.error,'danger')
+    }
+    else {
+      
+      // modal.classList.remove('show')
+      alertProp.showAlert('New Vibe successfully created','success')
+      setTimeout(() => {
+        
+        
+      }, 700);
+      
+    }
+  }
+}
+
   return (
     <div>
-      {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal</button> */}
+      {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal</button> */}
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New Playlist </h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="exampleModalLabel">New  <span className='vibe'>Vibe</span> </h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={removeData}></button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
         <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Enter Name Of The Playlist</label>
-            <input required type="text" class="form-control" id="recipient-name"/>
+          <div className="mb-3">
+            <label for="recipient-name" className="col-form-label">Enter Name Of The <span className='vibe'>Vibe</span></label>
+            <input required type="text" onChange={changeName} className="form-control" id="recipient-name"/>
+            <p  className='playlistNameError error'></p>
           </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Enter Quote (if any) </label>
-            <textarea class="form-control" id="message-text"></textarea>
+          <div className="mb-3">
+            <label for="message-text" className="col-form-label" >Enter Quote (if any) </label>
+            <textarea className="form-control" id="message-text" onChange={changeQuote}></textarea>
           </div>
         </form>
-        <button type="button" class="btn btn-info">Choose Photo</button>
+        <UploadButton uploader={uploader}
+                options={{ multi: false }}
+                onComplete={files => setFileUrl(files[0].fileUrl)}>
+    {({onClick}) =>
+      <button onClick={onClick} className="btn btn-info">
+       Upload Image
+      </button>
+    }
+  </UploadButton>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
-        <button type="button" class="btn btn-primary">Save</button>
+      <div className="modal-footer">
+        
+        <button type="button" className="btn btn-primary" onClick={addNewPlaylist}>Save</button>
         
       </div>
     </div>

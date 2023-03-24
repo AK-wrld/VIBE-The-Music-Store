@@ -7,6 +7,7 @@ import SearchItem from './SearchItem'
 import '../CSS/SearchItem.css'
 import BottomPlayer from './BottomPlayer'
 import { useSelector } from 'react-redux'
+import ProfileList from './ProfileList'
 
 const Search = () => {
     const props = useContext(ModeContext)
@@ -18,7 +19,7 @@ const Search = () => {
     <>
     <Navbar/>
     <QueueList/>
-    
+    <ProfileList/>
 
     <div class="carousel__container">
 

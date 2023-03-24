@@ -16,6 +16,7 @@ import BottomPlayer from './BottomPlayer'
 import ProfileList from './ProfileList'
 import Modal from './Modal'
 import { useSelector } from 'react-redux'
+import Alert from './Alert'
 export default function Home() {
   const q = useContext(QueueContext)
   const loginProp = useContext(LoginContext)
@@ -34,10 +35,12 @@ export default function Home() {
   return window.location = ('/login')
  }
  
+ 
   return (
     <>
     {/* {console.log(props.mode)} */}
     <Navbar   />
+    <Alert/>
     <LoadingBar
         color='#f11946'
         

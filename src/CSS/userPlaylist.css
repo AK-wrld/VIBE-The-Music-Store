@@ -1,0 +1,96 @@
+
+/* .main {
+    max-width: 900px;
+} */
+#playlistTitle {
+    font-family: 'Takota', sans-serif;
+    letter-spacing: 1.7px;
+    font-size: 70px;
+
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 400%;
+    color: transparent !important;
+    animation: color-animation 20s linear infinite alternate;
+}
+.lightPlaylistTitle {
+    background: #8A2387;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #061161, #8A2387);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #061161, #8A2387); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.darkPlaylistTitle {
+    background: #2980B9;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    
+}
+@keyframes color-animation {
+    from {
+        background-position: left;
+    }
+  
+    to {
+        background-position: right;
+    }
+  }
+.photoTitleContainer {
+    display: flex;
+    justify-content:flex-start;
+    padding: 0;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: center;
+
+}
+.playlistquote {
+    font-family: 'Dancing Script', cursive;
+font-size: 35px;
+}
+.icon {
+    text-align: center;
+    font-size: xx-large;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.btns {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table {
+    width: 1200px;
+    margin: 0px !important;
+}
+tbody, td, tfoot, th, thead, tr {
+    border-style: none;
+}
+th,td {
+    cursor: pointer;
+}
+tr:hover {
+    transition: background-color 0.3s;
+    background-color: rgba(128, 128, 128, 0.196);
+}
+.playlistBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 3, 100, 0.699);
+    border: none;
+    position: relative;
+    transition: background-color,0.5s;
+}
+.playlistBtn:hover {
+    background-color: rgba(255, 3, 100);
+}
+
+/* .playlistBtn>i {
+    font-size: large;
+} */
