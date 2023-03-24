@@ -20,7 +20,7 @@ function Model() {
 // console.log(quote)
 //   },[quote])
 const changeName =(event)=> {
-  if(modalProps.modalType==='New Playlist') {
+  if(modalProps.modalType==='New Vibe') {
 
     setName(event.target.value)
   }
@@ -30,7 +30,7 @@ const changeName =(event)=> {
   
 }
 const changeQuote =(event)=> {
-  if(modalProps.modalType==='New Playlist') {
+  if(modalProps.modalType==='New Vibe') {
   setQuote(event.target.value)
   }
   else {
@@ -50,6 +50,7 @@ const removeData = ()=> {
 
 const addNewPlaylist = async(ev)=> {
 ev.preventDefault()
+console.log(name)
 const playlistNameError = document.getElementsByClassName('playlistNameError')[0]
   if(name.length===0) {
     // console.log('nahi jaega')
@@ -164,7 +165,7 @@ ev.preventDefault()
         <UploadButton uploader={uploader}
                 options={{ multi: false }}
                 onComplete={files => {
-                  if(modalProps.modalType==='New Playlist'){
+                  if(modalProps.modalType==='New Vibe'){
                     setFileUrl(files[0].fileUrl)
                   }
                   else {
