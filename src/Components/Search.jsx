@@ -4,6 +4,7 @@ import NavbarContext from '../context/ContextFiles/NavbarContext'
 import Navbar from './Navbar'
 import QueueList from './QueueList'
 import SearchItem from './SearchItem'
+import Alert from './Alert'
 import '../CSS/SearchItem.css'
 import BottomPlayer from './BottomPlayer'
 import { useSelector } from 'react-redux'
@@ -18,6 +19,7 @@ const Search = () => {
   return (
     <>
     <Navbar/>
+    <Alert/>
     <QueueList/>
     <ProfileList/>
 

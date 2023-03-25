@@ -18,23 +18,17 @@ import store from '../store'
 
     //handling fast forward btn
     const handleFastForwardClick = ()=> {
-      if(playlistProps.playBtn===false) {
+     
         // console.log('play btn false')
         playlistProps.audioRef.current.pause()
-
-      playlistProps.audioRef.current.currentTime = 0
-      // playlistProps.setProgressBarValue(0)
-      const action = createAction('remove','')
-      store.dispatch(action)
-      playlistProps.isPlaying(false)
-      playlistProps.isPaused(false)       
-      }
-      playlistProps.audioRef.current.pause()
-      playlistProps.audioRef.current.currentTime = playlistProps.audioRef.current.duration
-      playlistProps.setProgressBarValue(100)
-      playlistProps.audioRef.current.play()
+        const action = createAction('removeSong')
+        store.dispatch(action)
+        playlistProps.audioRef.current.currentTime=0
+        playlistProps.isPlaying(false)
+        playlistProps.isClicked(true)
+        playlistProps.isPaused(false)
+     
     }
-
     //handling prev button
     const handlePrevClick = ()=> {
       if(playlistProps.playBtn===false) {

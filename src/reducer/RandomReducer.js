@@ -34,6 +34,18 @@ const Reducer = (state = {
           
         
     }
+    else if(action.type==='removeParticularSong') {
+        const newarr = state.playingQueue.filter((el,index)=> {
+            if(index!==action.payload) {
+                return true
+            }
+        })
+        // console.log(newarr)
+        const checkEmpty = newarr.length>0?false:true
+        return {...state,playingQueue:newarr,isEmpty:checkEmpty}
+          
+        
+    }
     else if(action.type==='loopRemove') {
         const song = state.playingQueue.shift()
         console.log(song)

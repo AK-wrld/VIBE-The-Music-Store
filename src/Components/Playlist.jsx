@@ -51,38 +51,7 @@ export default function Playlist() {
 
 
 
-  const addSongs = (newarr) => {
-    // console.log(newarr)
-    const action = createAction("multiAdd", newarr)
-    store.dispatch(action)
-
-  }
-  const addASong = (el) => {
-    const action = createAction("add", el)
-    store.dispatch(action)
-
-  }
-
-  const priorityAdd = (el)=> {
-    
-    const {name,url,artist,img} = el
-    // console.log(trackname)
-    const song = {
-      name:name,
-      url:url,
-      artist:artist,
-      img:img
-      
-    }
-    const action = createAction("priorityAdd", song)
-    // console.log(action)
-    store.dispatch(action)
-    playlistProps.isPaused(false)
-    playlistProps.isPlaying(false)
-    playlistProps.isClicked(true)
-   
-      
-  }
+  
   useEffect(()=> {
     const play = document.getElementById('play')
     const icon = play.lastChild
@@ -117,7 +86,7 @@ export default function Playlist() {
          <div className="btns mb-3">
 
           <button className='play playlistBtn' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
-          <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
+          <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.songArray)}></i></button>
           <button className='playlistBtn' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} ><i class="bi bi-infinity icon"></i></button>
          </div>
 
@@ -137,7 +106,7 @@ export default function Playlist() {
               const itemIndex = playlistProps.songArray.indexOf(el);
               return <tbody style={props.textCol} key={el._id} >
 
-                <tr key={el._id} onClick={() => priorityAdd(el)}>
+                <tr key={el._id} onClick={() => playlistProps.priorityAdd(el)}>
                   <th scope="row">{itemIndex+1}</th>
                   <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'>{el.name}</span></td>
                   <td>{el.artist}</td>

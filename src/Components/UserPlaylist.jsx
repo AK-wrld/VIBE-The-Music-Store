@@ -21,7 +21,28 @@ export default function userPlaylist() {
   }
 
   const obj = JSON.parse(window.localStorage.getItem('userPlaylist'))
+  useEffect(() => {
+    playlistProps.fetchUserSongs(obj._id)
 
+  }, [])
+  useEffect(props.toggleMode, [props.mode])
+  useEffect(()=> {
+    const play = document.getElementById('play')
+    const icon = play.lastChild
+    // console.log(play)
+    if(playlistProps.playBtn===true) {
+      icon.className = ''
+      icon.classList.add('bi')
+      icon.classList.add('bi-pause')
+      icon.classList.add('icon')
+    }
+    else {
+      icon.className = ''
+      icon.classList.add('bi')
+      icon.classList.add('bi-play-fill')
+      icon.classList.add('icon')
+    }
+  },[playlistProps.playBtn])
   return (
     <>
       <Navbar />
@@ -38,7 +59,7 @@ export default function userPlaylist() {
          <div className="btns mb-3">
 
           <button className='play playlistBtn' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
-          <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
+          <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.UsersongArray)}></i></button>
           <button className='playlistBtn' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} ><i class="bi bi-infinity icon"></i></button>
          </div>
 
@@ -54,15 +75,19 @@ export default function userPlaylist() {
               <th scope="col">Date of Release</th>
 
             </thead>
-            <tbody style={props.textCol} >
+            {playlistProps.UsersongArray.map((el, index) => {
+              const itemIndex = playlistProps.UsersongArray.indexOf(el);
+              return <tbody style={props.textCol} key={el._id} >
 
-<tr >
-  <th scope="row">1</th>
-  <td><img src={obj.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'></span></td>
-  <td>Arijit Singh</td>
-  <td><p style={{ padding: "0px 2px" }}>27/08/2023</p></td>
-</tr>
-</tbody>
+                <tr key={el._id} onClick={() => playlistProps.priorityAdd(el)}>
+                  <th scope="row">{itemIndex+1}</th>
+                  <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'>{el.name}</span></td>
+                  <td>{el.artist}</td>
+                  <td><p style={{ padding: "0px 2px" }}>{el.date.split('T')[0]}</p></td>
+                </tr>
+              </tbody>
+            })
+            }
 
           </table>
         </div>

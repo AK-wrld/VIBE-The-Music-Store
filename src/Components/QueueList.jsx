@@ -77,7 +77,7 @@ export default function QueueList(prop) {
           // console.log(el)
           
             return <li key={index} >
-              <QueueItem key={el._id} name = {el.name} url = {el.url} />
+              <QueueItem key={el._id} name = {el.name} url = {el.url} index={index} />
               </li>
           
           
