@@ -33,7 +33,7 @@ function Cards() {
   return (
     cardsProps.userPlaylist && <>
     <div id="cardContainer">
-    <div class="card myCard" style={{ "width": "10rem" }} onClick={setModalAsNew}  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
+    <div class="card myCard" style={{ "width": "10rem" }} onClick={setModalAsNew}>
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png" class="card-img-top" alt="..." />
         <div class="card-body">
           <h5>Create a new <span className='vibe'>Vibe</span></h5>
@@ -55,7 +55,7 @@ function Cards() {
             <div className="userPlaylistBtns">
 
           <button type="button" class="btn btn-danger deleteUserPlaylist" onClick={()=>cardsProps.deleteUserPlaylist(el._id)}><i class="bi bi-x"></i></button>
-          <button type="button" class="btn btn-info updateUserPlaylist" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="bi bi-pencil-square" onClick={()=>setModalAsUpdate(el._id,el.name,el.quote,el.img)}></i></button>
+          <button type="button" class="btn btn-info updateUserPlaylist"><i class="bi bi-pencil-square" onClick={()=>setModalAsUpdate(el._id,el.name,el.quote,el.img)}></i></button>
             </div>
         </div>
         })

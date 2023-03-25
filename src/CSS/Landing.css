@@ -3,9 +3,7 @@
     padding-left: 0%;
     margin-left: 0%;
   }
-  #root {
-    height: 100vh;
-  }
+  
   body {
     background-color: #FA8BFF;
     background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
@@ -90,7 +88,7 @@
         background-position: right;
     }
   }
-  
+
   .image {
     width: 90px;
     position: absolute;

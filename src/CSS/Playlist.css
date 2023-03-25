@@ -73,6 +73,7 @@ tbody, td, tfoot, th, thead, tr {
 }
 th,td {
     cursor: pointer;
+    vertical-align: middle;
 }
 tr:hover {
     transition: background-color 0.3s;

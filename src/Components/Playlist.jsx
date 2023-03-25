@@ -77,7 +77,7 @@ export default function Playlist() {
       <Navbar />
       <QueueList />
       <ProfileList/>
-      <div className="container main">
+      <div className="container main" >
         <div className="container">
           <div className="container photoTitleContainer">
 

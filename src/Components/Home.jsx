@@ -51,7 +51,7 @@ export default function Home() {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       changeProgress={progress}/>
-      <div className="container my-3">
+      <div className="container my-3" >
 
      <QueueList  />
      <ProfileList/>
