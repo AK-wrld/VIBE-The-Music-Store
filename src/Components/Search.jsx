@@ -24,7 +24,7 @@ const Search = () => {
     <div class="carousel__container">
 
      {navbar.results? navbar.results.map((el,index)=> {
-        return <SearchItem key={index} artist ={el.artistName} imgUrl = {el.artworkUrl100} trackname = {el.trackName} audioUrl={el.previewUrl}/>
+        return <SearchItem key={index} artist ={el.artistName} imgUrl = {el.artworkUrl100} trackname = {el.trackName} audioUrl={el.previewUrl} date = {el.releaseDate}/>
     }):""}
     </div>
     {!isEmpty?<BottomPlayer/>:''}

@@ -6,6 +6,7 @@ const NavbarState = (props)=> {
    //make global props and global states here 
    const [results,setResults] = useState([])
    const [navInp,setNavInp] = useState('')
+   const [songObj,setSongObj] = useState({})
    
    async function filter() {
     // console.log("test")
@@ -16,22 +17,9 @@ const NavbarState = (props)=> {
         // console.log(parsedData.results)
         setResults(parsedData.results)
     
-    // ul.innerHTML=""
-    // parsedData.results.map((el)=> {
-
-    //     let li = document.createElement('li')
-    //     if(el.trackName) {
-
-    //         li.innerText=el.trackName
-    //         console.log(el.trackName)
-    //         ul.appendChild(li)
-    //     }
-
-
-    // })
 }
     return (
-        <NavbarContext.Provider value={{results,setResults,filter,navInp,setNavInp}}>
+        <NavbarContext.Provider value={{results,setResults,filter,navInp,setNavInp,songObj,setSongObj}}>
            
             {props.children}
         </NavbarContext.Provider>

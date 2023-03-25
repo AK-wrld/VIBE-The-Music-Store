@@ -9,7 +9,7 @@ import BottomPlayer from './BottomPlayer'
 import ProfileList from './ProfileList';
 
 
-export default function Playlist() {
+export default function userPlaylist() {
   const props = useContext(ModeContext)
   const playlistProps = useContext(PlaylistContext)  
   const isEmpty = useSelector((state) => state.isEmpty)

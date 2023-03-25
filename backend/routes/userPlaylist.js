@@ -51,9 +51,23 @@ router.post('/addUserPlaylist', async (req, res) => {
 router.post('/updateUserPlaylist', async (req, res) => {
 
     try { 
-        const { _id, name, quote, img } = req.body
-     await userPlaylist.findByIdAndUpdate(_id,{name , quote, img},{new:true})
-    res.status(200).json({ "success": true, "message": "The playlist has been succesfully updated"})
+        const { _id, name, quote, img,changeName } = req.body
+        if(changeName==true) {
+
+            const oldPlaylists = await userPlaylist.find({name})
+            if(oldPlaylists.length != 0) {
+                res.status(400).json({ "success": false, error : "Playlist name already exists"})
+            }
+            else {
+    
+                await userPlaylist.findByIdAndUpdate(_id,{name , quote, img},{new:true})
+               res.status(200).json({ "success": true, "message": "The playlist has been succesfully updated"})
+            }
+        }
+        else {
+            await userPlaylist.findByIdAndUpdate(_id,{name , quote, img},{new:true})
+               res.status(200).json({ "success": true, "message": "The playlist has been succesfully updated"})
+        }
         
     } catch {
 

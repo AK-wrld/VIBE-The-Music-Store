@@ -7,7 +7,7 @@
   text-decoration: none;
 }
 .myCard {
-  height: 35vh;
+  height: 38vh;
   background-color: blanchedalmond;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -35,4 +35,12 @@
   font-family: 'Gotham', sans-serif;
   font-weight: 500;
   font-size: 14px;
+}
+.userPlaylistBtns {
+  display: flex;
+  justify-content: space-evenly;
+}
+a {
+  text-decoration: none;
+  /* color: aliceblue; */
 }
