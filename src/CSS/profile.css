@@ -47,23 +47,23 @@
 }
 
 .navigation {
-  width: 100%;
-  background-color: black;
-  margin-top: 300px;
+  width: 65%;
+  margin: auto;
   
 }
 
 .logout {
   font-size: .8em;
-  font-family: 'Oswald', sans-serif;
-	position: relative;
-  right: -18px;
-  bottom: -4px;
-  overflow: hidden;
-  letter-spacing: 3px;
-  opacity: 0;
-  transition: opacity .45s;
-  -webkit-transition: opacity .35s;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    right: -18px;
+    bottom: -4px;
+    overflow: hidden;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity .45s;
+    -webkit-transition: opacity .35s;
+    padding-top: 8px;
   
 }
 
@@ -77,9 +77,15 @@
   background-color: black;
   transition: width .35s;
   -webkit-transition: width .35s;
-  overflow: hidden
+  overflow: hidden;
+  height: 50px;
+  position: relative;
 }
-
+.buttonLogout>img {
+  height: 30px;
+  position: absolute;
+  top: 0px;
+}
 #profileLogout:hover {
   width: 200px;
 }

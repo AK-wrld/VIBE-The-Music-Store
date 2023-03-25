@@ -17,7 +17,9 @@ import ProfileList from './ProfileList'
 import Modal from './Modal'
 import { useSelector } from 'react-redux'
 import Alert from './Alert'
+import { useNavigate } from 'react-router-dom'
 export default function Home() {
+  const navigate = useNavigate()
   const q = useContext(QueueContext)
   const loginProp = useContext(LoginContext)
   const props = useContext(ModeContext)
@@ -32,7 +34,7 @@ export default function Home() {
   }
  const token = window.localStorage.getItem('token')
  if(!token) {
-  return window.location = ('/login')
+  navigate('/login')
  }
  
  

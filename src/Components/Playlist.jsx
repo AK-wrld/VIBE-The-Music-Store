@@ -10,9 +10,11 @@ import store from '../store';
 import { useSelector } from 'react-redux';
 import BottomPlayer from './BottomPlayer'
 import ProfileList from './ProfileList';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Playlist() {
+  const navigate=useNavigate()
   const props = useContext(ModeContext)
   const playlistProps = useContext(PlaylistContext)  
   const playingQueuee = useSelector((state) => state.playingQueue)
@@ -20,7 +22,7 @@ export default function Playlist() {
   
   const token = window.localStorage.getItem('token')
   if (!token) {
-    return window.location = ('/login')
+    navigate('/login')
   }
 
   const obj = JSON.parse(window.localStorage.getItem('playlistdata'))

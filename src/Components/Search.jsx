@@ -9,8 +9,14 @@ import '../CSS/SearchItem.css'
 import BottomPlayer from './BottomPlayer'
 import { useSelector } from 'react-redux'
 import ProfileList from './ProfileList'
+import { useNavigate } from 'react-router-dom'
 
 const Search = () => {
+  const navigate = useNavigate()
+  const token = window.localStorage.getItem('token')
+  if(!token) {
+   navigate('/login')
+  }
     const props = useContext(ModeContext)
     const navbar = useContext(NavbarContext)
     const isEmpty = useSelector((state) => state.isEmpty)
