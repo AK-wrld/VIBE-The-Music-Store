@@ -18,6 +18,7 @@ const PlaylistState = (props) => {
   const [songArray, setSongs] = useState([])
   const [UsersongArray, setUserSongs] = useState([])
   const [progressBar,setProgressBarValue] = useState(0)
+  const [volumeBar,setVolumeBar] = useState(50)
   const fetchSongs = async (playlistId) => {
     const response = await fetch(`http://localhost:5000/api/def/${playlistId}`, {
       method: "GET",
@@ -94,7 +95,7 @@ const PlaylistState = (props) => {
 
     setProgressBarValue(progress)
   }
-
+ 
   const handleAudioEnd = () => {
     isPlaying(false)
     
@@ -162,9 +163,9 @@ const PlaylistState = (props) => {
     }
   },[audioRef])
   return (
-    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop,progressBar,setProgressBarValue,addSongs,addASong,priorityAdd,UsersongArray,setUserSongs,fetchUserSongs }}>
+    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop,progressBar,setProgressBarValue,addSongs,addASong,priorityAdd,UsersongArray,setUserSongs,fetchUserSongs,volumeBar,setVolumeBar }}>
       {props.children}
-      <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd} onTimeUpdate={handleTimeUpdate}></audio>
+      <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd} onTimeUpdate={handleTimeUpdate} ></audio>
     </PlaylistContext.Provider>
   )
 }

@@ -15,14 +15,25 @@ import store from '../store'
       
       playlistProps.audioRef.current.currentTime = myProgressBar.value*playlistProps.audioRef.current.duration/100
     }
-
+    const volumeBar = document.getElementById('volumeBar')
+    const changeAudioVolume = ()=> {
+      // console.log(playlistProps.audioRef.current.volume)
+      playlistProps.audioRef.current.volume = volumeBar.value/100
+    }
     //handling fast forward btn
     const handleFastForwardClick = ()=> {
      
         // console.log('play btn false')
         playlistProps.audioRef.current.pause()
-        const action = createAction('removeSong')
-        store.dispatch(action)
+        if(playlistProps.onLoop===false) {
+
+          const action = createAction('removeSong')
+          store.dispatch(action)
+        }
+        else {
+          const action = createAction('loopRemove')
+          store.dispatch(action)
+        }
         playlistProps.audioRef.current.currentTime=0
         playlistProps.isPlaying(false)
         playlistProps.isClicked(true)
@@ -86,11 +97,18 @@ import store from '../store'
           <div class="bottom-bar-progress">
             <input type="range" name="range" id="myProgressBar" min="0" value={isNaN(playlistProps.progressBar)?0:playlistProps.progressBar} max="100" onChange={changeAudioTime}/>
             <div class="icons">
+              <div style={{marginLeft:'325px',marginRight:'160px'}}>
+
                 <button className='footerBtn' ><i class="fa-solid fa-shuffle" id="shuffle" style={{fontSize:'24px'}}></i></button>
                 <button className='footerBtn' ><i class="fas fa-3x fa-step-backward" id="previous" style={{fontSize:'24px'}} onClick={handlePrevClick}></i></button>
                 <button className='footerBtn' ><i  id="masterPlay" onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}></i></button>
                 <button className='footerBtn' ><i class="fas fa-3x fa-step-forward" id="next" style={{fontSize:'24px'}} onClick={handleFastForwardClick}></i> </button>
                 <button className='footerBtn' ><i class="fa-solid fa-repeat jello" id="repeat" style={{fontSize:'24px',color:playlistProps.onLoop?'springgreen':'white'}} onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)}></i></button>
+              </div>
+                <div className="volumeContainer">
+                <i className={`fa-solid fa-volume-${playlistProps.audioRef.current.volume===0?'xmark':playlistProps.audioRef.current.volume<=0.5?'low':'high'}`}></i>
+                <input type="range" name="" id="volumeBar" min={0} max='100'  onChange={changeAudioVolume}/>
+                </div>
           </div>
            {/* <div class="righticons">
             <div class="icons">

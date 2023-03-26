@@ -38,7 +38,7 @@ const CardsState = (props)=> {
       setUserPlaylist(newarr)
     }
     else {
-      alertProp.showAlert(data.message,'danger')
+     alertProp.showAlert(data.message,'danger')
     }
   }
     return (

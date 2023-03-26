@@ -8,7 +8,7 @@
     /* transform: translateX(-100%); */
     transition: transform 1s;
     text-align: center;
-    z-index: 100;
+    z-index: 1;
 }
 .Profilebtn {
     width: 50px;
