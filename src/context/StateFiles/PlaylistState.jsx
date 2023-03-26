@@ -15,6 +15,7 @@ const PlaylistState = (props) => {
   const [play, isPlaying] = useState(false)
   const [paused, isPaused] = useState(false)
   const [onLoop,setOnLoop] = useState(false)
+  const [shuffle,onShuffle] = useState(false)
   const [songArray, setSongs] = useState([])
   const [UsersongArray, setUserSongs] = useState([])
   const [progressBar,setProgressBarValue] = useState(0)
@@ -148,6 +149,7 @@ const PlaylistState = (props) => {
       isClicked(false)
       isPaused(false)
       isPlaying(false)
+      onShuffle(false)
     }
     else {
       console.log('not empty')
@@ -163,7 +165,7 @@ const PlaylistState = (props) => {
     }
   },[audioRef])
   return (
-    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop,progressBar,setProgressBarValue,addSongs,addASong,priorityAdd,UsersongArray,setUserSongs,fetchUserSongs,volumeBar,setVolumeBar }}>
+    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop,progressBar,setProgressBarValue,addSongs,addASong,priorityAdd,UsersongArray,setUserSongs,fetchUserSongs,volumeBar,setVolumeBar,shuffle,onShuffle }}>
       {props.children}
       <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd} onTimeUpdate={handleTimeUpdate} ></audio>
     </PlaylistContext.Provider>

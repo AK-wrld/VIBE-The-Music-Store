@@ -79,6 +79,11 @@ import store from '../store'
         // icon.classList.add('icon')
       }
     },[playlistProps.playBtn])
+    const shuffle = ()=> {
+      const action = createAction('shuffle')
+      store.dispatch(action)
+      playlistProps.onShuffle(true)
+    }
     return (
       <>
         <div class="bottom">
@@ -99,7 +104,7 @@ import store from '../store'
             <div class="icons">
               <div style={{marginLeft:'325px',marginRight:'160px'}}>
 
-                <button className='footerBtn' ><i class="fa-solid fa-shuffle" id="shuffle" style={{fontSize:'24px'}}></i></button>
+                <button className='footerBtn' ><i class="fa-solid fa-shuffle jello" id="shuffle" style={{fontSize:'24px',color:playlistProps.shuffle?'springgreen':'white'}} onClick={shuffle}></i></button>
                 <button className='footerBtn' ><i class="fas fa-3x fa-step-backward" id="previous" style={{fontSize:'24px'}} onClick={handlePrevClick}></i></button>
                 <button className='footerBtn' ><i  id="masterPlay" onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}></i></button>
                 <button className='footerBtn' ><i class="fas fa-3x fa-step-forward" id="next" style={{fontSize:'24px'}} onClick={handleFastForwardClick}></i> </button>
