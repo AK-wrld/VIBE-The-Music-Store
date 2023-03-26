@@ -28,7 +28,7 @@ const deleteQueueItem = (index)=> {
       {/* <input type="hidden" name="" id="" value={props.url}/> */}
       <div id='queueItem' >
         <span className='queueItemName' style={{color:props.index===0?'white':'gray'}}>{props.name}</span>
-        <i class="bi bi-x deleteQueueItem" onClick={()=>deleteQueueItem(props.index)}></i>
+        <i class="bi bi-x deleteQueueItem jello" onClick={()=>deleteQueueItem(props.index)}></i>
       </div>
       {/* <audio id='audio' src={props.url} style={{display:"none"}}></audio> */}
     </>

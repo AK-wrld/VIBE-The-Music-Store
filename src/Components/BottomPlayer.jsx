@@ -90,7 +90,7 @@ import store from '../store'
                 <button className='footerBtn' ><i class="fas fa-3x fa-step-backward" id="previous" style={{fontSize:'24px'}} onClick={handlePrevClick}></i></button>
                 <button className='footerBtn' ><i  id="masterPlay" onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}></i></button>
                 <button className='footerBtn' ><i class="fas fa-3x fa-step-forward" id="next" style={{fontSize:'24px'}} onClick={handleFastForwardClick}></i> </button>
-                <button className='footerBtn' ><i class="fa-solid fa-repeat" id="repeat" style={{fontSize:'24px'}} onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)}></i></button>
+                <button className='footerBtn' ><i class="fa-solid fa-repeat jello" id="repeat" style={{fontSize:'24px',color:playlistProps.onLoop?'springgreen':'white'}} onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)}></i></button>
           </div>
            {/* <div class="righticons">
             <div class="icons">

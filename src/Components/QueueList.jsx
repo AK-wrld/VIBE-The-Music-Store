@@ -16,7 +16,7 @@ export default function QueueList(prop) {
     const queueList = document.getElementById("queueList")
     // console.log(queueList)
     if(props.mode==='dark') {
-      queueList.style.backgroundColor="black";
+      queueList.style.backgroundColor="#171717";
       queueList.style.color="white"
     }
     else {
@@ -71,7 +71,7 @@ export default function QueueList(prop) {
 
       <div className="queueList" id='queueList' style={q.queueshift  }>
       <h2 className='py-3' style={{display:"inline"}}>Your Queue</h2>
-      <button className='crossBtn' onClick={clearQueue}><i class="bi bi-x-lg clearQueue" ></i></button>
+      <button className='crossBtn jello' onClick={clearQueue} ><i class="bi bi-x-lg clearQueue" ></i></button>
       <ul id='ul'>
         {playingQueuee && playingQueuee.map((el,index)=> {
           // console.log(el)

@@ -71,9 +71,9 @@ const SearchItem = (props) => {
         />
         <div class="carousel-item__details">
           <div class="controls">
-            <span class="fas fa-play-circle" onClick={() => priorityAdd(props)}></span>
-            <span class="fas fa-plus-circle" onClick={() => makeSongObj(props)}></span>
-            <span class="fa-solid fa-folder-plus " id='addToPlaylist' onClick={() => openModal(props)}></span>
+            <span class="fas fa-play-circle jello" onClick={() => priorityAdd(props)}></span>
+            <span class="fas fa-plus-circle jello" onClick={() => makeSongObj(props)}></span>
+            <span class="fa-solid fa-folder-plus jello" id='addToPlaylist' onClick={() => openModal(props)}></span>
           </div>
           <h5 class="carousel-item__details--title">{props.trackname}</h5>
           <h6 class="carousel-item__details--subtitle">{props.artist}</h6>

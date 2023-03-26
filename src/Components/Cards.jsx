@@ -48,8 +48,8 @@ function Cards() {
             <Link to='/userplaylist'>
           <img class="card-img-top" src={el.img} alt="..."  />
           <div class="card-body">
-            <h5>{el.name}</h5>
-            <h6>{el.quote?el.quote.slice(0,15):''}...</h6>
+            <h5 style={{fontFamily:'Delicious Handrawn'}}>{el.name}</h5>
+            {/* <h6>{el.quote?el.quote.slice(0,15):''}...</h6> */}
           </div>
             </Link>
             <div className="userPlaylistBtns">

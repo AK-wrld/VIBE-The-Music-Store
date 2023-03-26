@@ -87,9 +87,9 @@ export default function Playlist() {
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
          <div className="btns mb-3">
 
-          <button className='play playlistBtn' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
-          <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.songArray)}></i></button>
-          <button className='playlistBtn' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} ><i class="bi bi-infinity icon"></i></button>
+          <button className='play playlistBtn jello' id='play' style={{backgroundColor: playlistProps.playBtn?'springgreen':'rgba(255, 3, 100, 0.699)'}} onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
+          <button className='addToQueue playlistBtn jello' ><i class="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.songArray)}></i></button>
+          <button className='playlistBtn jello' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} style={{backgroundColor: playlistProps.onLoop?'springgreen':'rgba(255, 3, 100, 0.699)'}} ><i class="bi bi-infinity icon"></i></button>
          </div>
 
         </div>
@@ -110,7 +110,7 @@ export default function Playlist() {
 
                 <tr key={el._id} onClick={() => playlistProps.priorityAdd(el)}>
                   <th scope="row">{itemIndex+1}</th>
-                  <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'>{el.name}</span></td>
+                  <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span>{el.name}</span></td>
                   <td>{el.artist}</td>
                   <td><p style={{ padding: "0px 2px" }}>{el.date.split('T')[0]}</p></td>
                 </tr>

@@ -48,6 +48,17 @@ export default function userPlaylist() {
       icon.classList.add('icon')
     }
   }, [playlistProps.playBtn])
+  const changeStyle = () => {
+    const PlaylistTitle = document.getElementById('playlistTitle')
+    if (props.mode === 'light') {
+      PlaylistTitle.classList.replace('darkPlaylistTitle', 'lightPlaylistTitle')
+    }
+    else {
+      PlaylistTitle.classList.replace('lightPlaylistTitle', 'darkPlaylistTitle')
+    }
+    // console.log(PlaylistTitle)
+  }
+  useEffect(changeStyle, [props.mode])
   const removeUserSong = async (id) => {
     const obj = {
       _id: id
@@ -92,9 +103,9 @@ export default function userPlaylist() {
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
           <div className="btns mb-3">
 
-            <button className='play playlistBtn' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true) : playlistProps.isClicked(false) }}><i  ></i></button>
-            <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.UsersongArray)}></i></button>
-            <button className='playlistBtn' onClick={() => playlistProps.setOnLoop(!playlistProps.onLoop)} ><i class="bi bi-infinity icon"></i></button>
+            <button className='play playlistBtn jello' id='play' style={{backgroundColor: playlistProps.playBtn?'springgreen':'rgba(255, 3, 100, 0.699)'}} onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true) : playlistProps.isClicked(false) }}><i  ></i></button>
+            <button className='addToQueue playlistBtn jello' ><i class="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.UsersongArray)}></i></button>
+            <button className='playlistBtn jello' onClick={() => playlistProps.setOnLoop(!playlistProps.onLoop)} style={{backgroundColor: playlistProps.onLoop?'springgreen':'rgba(255, 3, 100, 0.699)'}} ><i class="bi bi-infinity icon"></i></button>
           </div>
 
         </div>
@@ -115,10 +126,10 @@ export default function userPlaylist() {
 
                 <tr key={el._id} >
                   <th scope="row" onClick={() => playlistProps.priorityAdd(el)}>{itemIndex + 1}</th>
-                  <td onClick={() => playlistProps.priorityAdd(el)}><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'>{el.name}</span></td>
+                  <td onClick={() => playlistProps.priorityAdd(el)}><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span >{el.name}</span></td>
                   <td onClick={() => playlistProps.priorityAdd(el)}>{el.artist}</td>
                   <td onClick={() => playlistProps.priorityAdd(el)}><span style={{ padding: "0px 2px" }}>{el.date.split('T')[0]}</span></td>
-                  <td> <i class="bi bi-x deleteUserSongItem" onClick={() => removeUserSong(el._id)}></i></td>
+                  <td> <i className="bi bi-x deleteUserSongItem jello" onClick={() => removeUserSong(el._id)}></i></td>
                 </tr>
               </tbody>
             })
