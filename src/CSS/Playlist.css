@@ -94,7 +94,7 @@ tr:hover {
     transition: background-color,0.5s;
 }
 .playlistBtn:hover {
-    background-color: rgba(255, 3, 100);
+    background-color: springgreen !important;
 }
 
 .addToQueue:hover {

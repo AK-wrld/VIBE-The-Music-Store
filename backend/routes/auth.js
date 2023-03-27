@@ -85,7 +85,7 @@ router.post('/login',[
       let passCompare = await bcrypt.compare(password,user.password)
       // console.log(passCompare)
       if(!passCompare) {
-      return res.status(400).json({success:false,error:"Paswword does not match the email.Either check your password or email"})
+      return res.status(400).json({success:false,error:"Password does not match the email.Either check your password or email"})
 
       }
       else {

@@ -38,3 +38,8 @@
 .signinBtn:hover {
     color: white;
 }
+.createPasswordContainer {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useState,useEffect } from 'react'
+import React, { useContext, useState,useEffect, useRef } from 'react'
 import { Link, } from 'react-router-dom'
 import AlertContext from '../context/ContextFiles/AlertContext'
 import LoginContext from '../context/ContextFiles/LoginContext'
@@ -7,10 +7,12 @@ import '../CSS/login.css'
 import Alert from './Alert'
 
 const Login = () => {
+ 
+ 
   const modeProp = useContext(ModeContext)
   const alertProp = useContext(AlertContext)
   useEffect(modeProp.toggleMode,[modeProp.mode])
-  const props = useContext(LoginContext)
+  const loginProps = useContext(LoginContext)
   
 
   const checkLogin = async () => {
@@ -72,7 +74,14 @@ const Login = () => {
     }
     
   }
-
+  useEffect(()=> {
+    if(loginProps.seePass===true) {
+      loginProps.passRef.current.type='text'
+    }
+    else {
+      loginProps.passRef.current.type='password'
+    }
+  },[loginProps.seePass])
 
  
   return (
@@ -89,10 +98,14 @@ const Login = () => {
         </div>
         <div className="container">
           <label htmlFor="email">Email</label><br />
-          <input type="email" id="email" name="email" style={{ "width": "100%" }} placeholder="Enter Email" className="my-2" required /><br />
+          <input type="email" id="email" name="email" style={{ "width": "93%" }} placeholder="Enter Email" className="my-2" required /><br />
           <div ><p id="error" className='error'></p></div>
           <label htmlFor="password">Password</label><br />
-          <input type="password" id="password" name="password" style={{ "width": "100%" }} placeholder="Enter Password" className="my-2" required /><br /><br />
+          <div className="passwordContainer">
+
+          <input type="password" ref={loginProps.passRef} id="password" name="password" style={{ "width": "100%" }} placeholder="Enter Password" className="my-2" required />
+          <i class={`bi bi-eye${loginProps.seePass===false?'-slash':''}-fill`} style={{fontSize:'large',cursor:'pointer'}} onClick={()=>loginProps.setSeepass(!loginProps.seePass)}></i><br /><br />
+          </div>
           <button type="submit" className="signinBtn" onClick={ checkLogin}>Sign In</button><br />
 
         </div>
