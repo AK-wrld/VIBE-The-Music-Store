@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react'
 import CardsContext from '../context/ContextFiles/CardsContext'
 import NavbarContext from '../context/ContextFiles/NavbarContext';
+import AlertContext from '../context/ContextFiles/AlertContext';
 import '../CSS/ModalAddingSongs.css'
 
 
 function ModalAddingSongs() {
     const cardsProps = useContext(CardsContext);
     const navbarProps = useContext(NavbarContext)
+    const alertProp = useContext(AlertContext)
     const addSongToUserPlaylist = async(playlistId) =>{
+      console.log(playlistId)
         const {artist,imgUrl,trackname,audioUrl,date} = navbarProps.songObj
         console.log(navbarProps.songObj)
         const addSongObj = {
@@ -27,7 +30,16 @@ function ModalAddingSongs() {
             body: JSON.stringify(addSongObj), // body data type must match "Content-Type" header
           });
           const data = await response.json ()
-          console.log(data)
+          if(data.success===false) {
+            alertProp.showAlert(data.error,'danger')
+          }
+          else {
+            
+            // modal.classList.remove('show')
+            alertProp.showAlert('Song successfully added','success')
+            
+            
+          }
     }
 
 
@@ -35,6 +47,7 @@ function ModalAddingSongs() {
 
   return (
     <>
+    
       <div>
         <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">

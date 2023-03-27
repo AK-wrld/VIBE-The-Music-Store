@@ -1,0 +1,13 @@
+#queueItem {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    position: relative;
+}
+.deleteQueueItem {
+    position: absolute;
+    right: 9px;
+    font-size: xx-large;
+    cursor: pointer;
+}

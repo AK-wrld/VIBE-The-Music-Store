@@ -4,11 +4,11 @@
     /* background-color: bisque; */
     position: fixed;
     right: 0px;
-    top: 55px;
+    top: 56px;
     /* transform: translateX(-100%); */
     transition: transform 1s;
     text-align: center;
-    z-index: 100;
+    z-index: 1;
 }
 .Profilebtn {
     width: 50px;
@@ -42,28 +42,28 @@
     margin-left: 10px;
 }
 .Nameheading{
-    margin-top: 160px;
+    /* margin-top: 160px; */
     margin-left: 12px;
 }
 
 .navigation {
-  width: 100%;
-  background-color: black;
-  margin-top: 300px;
+  width: 65%;
+  margin: auto;
   
 }
 
 .logout {
   font-size: .8em;
-  font-family: 'Oswald', sans-serif;
-	position: relative;
-  right: -18px;
-  bottom: -4px;
-  overflow: hidden;
-  letter-spacing: 3px;
-  opacity: 0;
-  transition: opacity .45s;
-  -webkit-transition: opacity .35s;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    right: -18px;
+    bottom: -4px;
+    overflow: hidden;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity .45s;
+    -webkit-transition: opacity .35s;
+    padding-top: 8px;
   
 }
 
@@ -77,9 +77,15 @@
   background-color: black;
   transition: width .35s;
   -webkit-transition: width .35s;
-  overflow: hidden
+  overflow: hidden;
+  height: 50px;
+  position: relative;
 }
-
+.buttonLogout>img {
+  height: 30px;
+  position: absolute;
+  top: 0px;
+}
 #profileLogout:hover {
   width: 200px;
 }

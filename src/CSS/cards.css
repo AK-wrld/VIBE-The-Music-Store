@@ -7,25 +7,28 @@
   text-decoration: none;
 }
 .myCard {
-  height: 38vh;
-  background-color: blanchedalmond;
+  height: 35vh;
+  background-color: #171717;
   cursor: pointer;
   transition: background-color 0.3s;
 }
+.myCard>img {
+  filter: invert();
+}
 .myCard:hover {
+  transition: background-color 0.4s;
   background-color: #303030ea;
 }
 .card-img-top {
   height: 140px;
 }
 .card-body > h5{
-  color: purple;
-    font-family: 'Gotham', sans-serif;
-    font-size: medium;
+  color: #0bd3c8;
+   letter-spacing: 0.4px;
     text-align: center;
 }
 .card-body > h6{
-  color: purple;
+  color: #0bd3c8;
     font-family: 'Gotham', sans-serif;
     font-size: medium;
     text-align: center;
@@ -43,4 +46,20 @@
 a {
   text-decoration: none;
   /* color: aliceblue; */
+}
+.deleteUserPlaylist {
+  background-color: transparent;
+}
+.deleteUserPlaylist:hover {
+  color: #dc3545;
+  background-color: transparent;
+}
+.updateUserPlaylist {
+  background-color: transparent;
+  color: white;
+
+}
+.updateUserPlaylist:hover {
+  color: #0dcaf0;
+  background-color: transparent;
 }

@@ -15,8 +15,11 @@ const PlaylistState = (props) => {
   const [play, isPlaying] = useState(false)
   const [paused, isPaused] = useState(false)
   const [onLoop,setOnLoop] = useState(false)
+  const [shuffle,onShuffle] = useState(false)
   const [songArray, setSongs] = useState([])
+  const [UsersongArray, setUserSongs] = useState([])
   const [progressBar,setProgressBarValue] = useState(0)
+  const [volumeBar,setVolumeBar] = useState(50)
   const fetchSongs = async (playlistId) => {
     const response = await fetch(`http://localhost:5000/api/def/${playlistId}`, {
       method: "GET",
@@ -36,6 +39,56 @@ const PlaylistState = (props) => {
       console.log(json.message)
     }
   }
+  const fetchUserSongs = async (playlistId) => {
+    const response = await fetch(`http://localhost:5000/api/user/getusersongs/${playlistId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    });
+    const json = await response.json()
+    if (json.success) {
+      console.log(json.fetchSongs)
+      setUserSongs(json.fetchSongs)
+    }
+    else {
+      console.log(json.message)
+    }
+  }
+  
+  const addSongs = (newarr) => {
+    // console.log(newarr)
+    const action = createAction("multiAdd", newarr)
+    store.dispatch(action)
+
+  }
+  const addASong = (el) => {
+    const action = createAction("add", el)
+    store.dispatch(action)
+
+  }
+
+  const priorityAdd = (el)=> {
+    
+    const {name,url,artist,img} = el
+    // console.log(trackname)
+    const song = {
+      name:name,
+      url:url,
+      artist:artist,
+      img:img
+      
+    }
+    const action = createAction("priorityAdd", song)
+    // console.log(action)
+    store.dispatch(action)
+    isPaused(false)
+    isPlaying(false)
+    isClicked(true)
+   
+      
+  }
   const handleTimeUpdate = ()=> {
     const progress = parseInt((audioRef.current.currentTime/audioRef.current.duration)*100)
     // console.log(audioRef.current.currentTime)
@@ -43,7 +96,7 @@ const PlaylistState = (props) => {
 
     setProgressBarValue(progress)
   }
-
+ 
   const handleAudioEnd = () => {
     isPlaying(false)
     
@@ -96,6 +149,7 @@ const PlaylistState = (props) => {
       isClicked(false)
       isPaused(false)
       isPlaying(false)
+      onShuffle(false)
     }
     else {
       console.log('not empty')
@@ -111,9 +165,9 @@ const PlaylistState = (props) => {
     }
   },[audioRef])
   return (
-    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop,progressBar,setProgressBarValue, }}>
+    <PlaylistContext.Provider value={{ songArray, setSongs, fetchSongs, playBtn, isClicked, play, isPlaying, audioRef,paused,isPaused,onLoop,setOnLoop,progressBar,setProgressBarValue,addSongs,addASong,priorityAdd,UsersongArray,setUserSongs,fetchUserSongs,volumeBar,setVolumeBar,shuffle,onShuffle }}>
       {props.children}
-      <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd} onTimeUpdate={handleTimeUpdate}></audio>
+      <audio src="" ref={audioRef} id='audio' onEnded={handleAudioEnd} onTimeUpdate={handleTimeUpdate} ></audio>
     </PlaylistContext.Provider>
   )
 }

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ModeContext from '../context/ContextFiles/ModeContext'
 import ProfileContext from '../context/ContextFiles/ProfileContext'
 import '../CSS/profile.css'
 import btn from '../Images/leftarrow.png'
 export default function ProfileList() {
+  const navigate = useNavigate()
   const profileProps = useContext(ProfileContext)
   const props = useContext(ModeContext)
   const changeProfileBg = () => {
@@ -48,7 +49,10 @@ export default function ProfileList() {
     }
   }
   useEffect(flipBtn, [profileProps.Profile])
-
+  const logout = ()=> {
+    window.localStorage.clear()
+    navigate('/login')
+  }
 
   return (
     profileProps.User && <>
@@ -70,13 +74,13 @@ export default function ProfileList() {
 
 
         <div class="navigation">
-          <a class="buttonLogout" id="profileLogout" href="">
+          <button class="buttonLogout" id="profileLogout" onClick={logout}>
 
             <img src="https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png" />
 
 
             <div class="logout">LOGOUT</div>
-          </a>
+          </button>
         </div>
       </div>
 

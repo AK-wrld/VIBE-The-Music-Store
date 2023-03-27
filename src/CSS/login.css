@@ -36,3 +36,9 @@ background: #e0e0e0;
     color: red;
     font-size: 12px;
 }
+.passwordContainer {
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

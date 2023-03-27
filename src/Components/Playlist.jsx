@@ -10,9 +10,11 @@ import store from '../store';
 import { useSelector } from 'react-redux';
 import BottomPlayer from './BottomPlayer'
 import ProfileList from './ProfileList';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Playlist() {
+  const navigate=useNavigate()
   const props = useContext(ModeContext)
   const playlistProps = useContext(PlaylistContext)  
   const playingQueuee = useSelector((state) => state.playingQueue)
@@ -20,7 +22,7 @@ export default function Playlist() {
   
   const token = window.localStorage.getItem('token')
   if (!token) {
-    return window.location = ('/login')
+    navigate('/login')
   }
 
   const obj = JSON.parse(window.localStorage.getItem('playlistdata'))
@@ -51,38 +53,7 @@ export default function Playlist() {
 
 
 
-  const addSongs = (newarr) => {
-    // console.log(newarr)
-    const action = createAction("multiAdd", newarr)
-    store.dispatch(action)
-
-  }
-  const addASong = (el) => {
-    const action = createAction("add", el)
-    store.dispatch(action)
-
-  }
-
-  const priorityAdd = (el)=> {
-    
-    const {name,url,artist,img} = el
-    // console.log(trackname)
-    const song = {
-      name:name,
-      url:url,
-      artist:artist,
-      img:img
-      
-    }
-    const action = createAction("priorityAdd", song)
-    // console.log(action)
-    store.dispatch(action)
-    playlistProps.isPaused(false)
-    playlistProps.isPlaying(false)
-    playlistProps.isClicked(true)
-   
-      
-  }
+  
   useEffect(()=> {
     const play = document.getElementById('play')
     const icon = play.lastChild
@@ -106,7 +77,7 @@ export default function Playlist() {
       <Navbar />
       <QueueList />
       <ProfileList/>
-      <div className="container main">
+      <div className="container main" >
         <div className="container">
           <div className="container photoTitleContainer">
 
@@ -116,9 +87,9 @@ export default function Playlist() {
           <h1 className='playlistquote my-3' style={props.textCol}>{obj.quote}</h1>
          <div className="btns mb-3">
 
-          <button className='play playlistBtn' id='play' onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
-          <button className='addToQueue playlistBtn' ><i class="bi bi-plus-square icon" onClick={() => addSongs(playlistProps.songArray)}></i></button>
-          <button className='playlistBtn' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} ><i class="bi bi-infinity icon"></i></button>
+          <button className='play playlistBtn jello' id='play' style={{backgroundColor: playlistProps.playBtn?'springgreen':'rgba(255, 3, 100, 0.699)'}} onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
+          <button className='addToQueue playlistBtn jello' ><i class="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.songArray)}></i></button>
+          <button className='playlistBtn jello' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} style={{backgroundColor: playlistProps.onLoop?'springgreen':'rgba(255, 3, 100, 0.699)'}} ><i class="bi bi-infinity icon"></i></button>
          </div>
 
         </div>
@@ -137,9 +108,9 @@ export default function Playlist() {
               const itemIndex = playlistProps.songArray.indexOf(el);
               return <tbody style={props.textCol} key={el._id} >
 
-                <tr key={el._id} onClick={() => priorityAdd(el)}>
+                <tr key={el._id} onClick={() => playlistProps.priorityAdd(el)}>
                   <th scope="row">{itemIndex+1}</th>
-                  <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span className='vibe'>{el.name}</span></td>
+                  <td><img src={el.img} alt="" style={{ width: "50px" }} />&nbsp;&nbsp;<span>{el.name}</span></td>
                   <td>{el.artist}</td>
                   <td><p style={{ padding: "0px 2px" }}>{el.date.split('T')[0]}</p></td>
                 </tr>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import LoginContext from '../ContextFiles/LoginContext'
 
 const loginState = (props)=> {
@@ -10,8 +10,11 @@ const loginState = (props)=> {
         email: '',
         date: '',
     })
+    const [seePass,setSeepass] = useState(false)
+    const passRef = useRef(false)
+    
     return (
-        <LoginContext.Provider value={{loginState,isLogged,authToken,setAuthToken,userDetails,setUserDetails}}>
+        <LoginContext.Provider value={{loginState,isLogged,authToken,setAuthToken,userDetails,setUserDetails,seePass,setSeepass,passRef}}>
            
             {props.children}
         </LoginContext.Provider>

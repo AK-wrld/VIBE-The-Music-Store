@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react'
+import AlertContext from '../ContextFiles/AlertContext'
 import CardsContext from '../ContextFiles/CardsContext'
 import ProfileContext from '../ContextFiles/ProfileContext'
 
@@ -6,6 +7,7 @@ const CardsState = (props)=> {
    //make global props and global states here 
    const [userPlaylist, setUserPlaylist] = useState([])
    const profileProps = useContext(ProfileContext)
+   const alertProp = useContext(AlertContext)
    const getUserPlaylist = async () => {
     const _id = profileProps.User._id
     console.log(_id)
@@ -27,14 +29,16 @@ const CardsState = (props)=> {
     const data = await response.json()
     // console.log(data)
     if (data.success) {
-      // setUserPlaylist(data.userPlaylists)
-      // console.log(userPlaylist)
+      alertProp.showAlert(data.message,'success')
       const newarr = userPlaylist.filter((el)=> {
         if(el._id!==_id) {
           return true
         }
       })
       setUserPlaylist(newarr)
+    }
+    else {
+     alertProp.showAlert(data.message,'danger')
     }
   }
     return (

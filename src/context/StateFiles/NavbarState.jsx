@@ -11,7 +11,7 @@ const NavbarState = (props)=> {
    async function filter() {
     // console.log("test")
     
-        let url = `https://itunes.apple.com/search?term=${navInp}&limit=10`
+        let url = `https://itunes.apple.com/search?term=${navInp}&entity=song&limit=10`
         let data = await fetch(url)
         let parsedData = await data.json()
         // console.log(parsedData.results)

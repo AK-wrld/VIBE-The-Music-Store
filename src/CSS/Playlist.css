@@ -73,6 +73,12 @@ tbody, td, tfoot, th, thead, tr {
 }
 th,td {
     cursor: pointer;
+    vertical-align: middle;
+}
+td {
+    font-family:'Delicious Handrawn';
+    font-size: larger;
+    letter-spacing: 0.4px;
 }
 tr:hover {
     transition: background-color 0.3s;
@@ -88,9 +94,9 @@ tr:hover {
     transition: background-color,0.5s;
 }
 .playlistBtn:hover {
-    background-color: rgba(255, 3, 100);
+    background-color: springgreen !important;
 }
 
-/* .playlistBtn>i {
-    font-size: large;
-} */
+.addToQueue:hover {
+    background-color: springgreen !important;
+}

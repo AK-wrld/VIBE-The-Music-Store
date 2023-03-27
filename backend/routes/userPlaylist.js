@@ -111,8 +111,12 @@ router.get('/getusersongs/:_id', async (req, res) => {
 router.post('/addusersong', async (req, res) => {
     try {
         const { playlist, name, url, artist, img, date } = req.body
-        const oldSongs = await userSongs.find({url})
-        if (oldSongs.length == 0) {
+        // console.log(playlist)
+        // console.log(url)
+        const oldSongs = await userSongs.findOne({ $and: [{ playlist: playlist }, { url: url }] })
+        // console.log(oldSongs)
+        if (!oldSongs) {
+            console.log('adding new song')
             const newSong = await userSongs.create({
             playlist, name, url, artist, img, date
         })

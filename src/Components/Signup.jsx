@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from 'react'
+import React, { useContext,useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import AlertContext from '../context/ContextFiles/AlertContext'
 import ModeContext from '../context/ContextFiles/ModeContext'
@@ -6,7 +6,9 @@ import Alert from './Alert'
 
 
 import '../CSS/signup.css'
+import LoginContext from '../context/ContextFiles/LoginContext'
 export default function Signup()  {
+    const loginProps = useContext(LoginContext)
     const navigate = useNavigate()
     const alertProp = useContext(AlertContext)
     const modeProp = useContext(ModeContext)
@@ -101,6 +103,14 @@ export default function Signup()  {
             
         }
     }
+    useEffect(()=> {
+        if(loginProps.seePass===true) {
+          loginProps.passRef.current.type='text'
+        }
+        else {
+          loginProps.passRef.current.type='password'
+        }
+      },[loginProps.seePass])
     return (
         <>
         <Alert/>
@@ -115,14 +125,18 @@ export default function Signup()  {
                 </div>
                 <div className="container">
                      <label htmlFor="username">Your Username</label><br />
-                    <input type="text" id="username" name="username" style={{ "width": "100%" }} placeholder="Username" className="my-2" required /><br />
+                    <input type="text" id="username" name="username" style={{ "width": "90%" }} placeholder="Username" className="my-2" required /><br />
                     <div ><p id="usernameError" className='error'></p></div>
                     <label htmlFor="username">Your Email</label><br />
-                    <input type="email" id="email" style={{ "width": "100%" }} name="email" placeholder="Email" className="my-2" required /><br />
+                    <input type="email" id="email" style={{ "width": "90%" }} name="email" placeholder="Email" className="my-2" required /><br />
                     <div ><p id="emailError" className='error'></p></div>
                     <label htmlFor="password">Create Your Password</label><br />
-                    <input type="password" id="password" style={{ "width": "100%" }} name="password" minLength="5" placeholder="Password" className="my-2" required /><br />
+                    <div className="createPasswordContainer">
+
+                    <input type="password" id="password" ref={loginProps.passRef} style={{ "width": "90%" }} name="password" minLength="5" placeholder="Password" className="my-2" required /><br />
+                    <i class={`bi bi-eye${loginProps.seePass===false?'-slash':''}-fill`} style={{fontSize:'large',cursor:'pointer'}} onClick={()=>loginProps.setSeepass(!loginProps.seePass)}></i><br /><br />
                     <div ><p id="passError" className='error'></p></div>
+                    </div>
                     <button type="submit" className="signupBtn" onClick={() => checkSignUp()}>Sign Up</button>
 
                 </div>
