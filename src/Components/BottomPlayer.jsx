@@ -86,29 +86,29 @@ import store from '../store'
     }
     return (
       <>
-        <div class="bottom">
-        <div class="bottom-bar">
-          <div class="bottom-bar-song-img">
+        <div className="bottom">
+        <div className="bottom-bar">
+          <div className="bottom-bar-song-img">
             <img src={playingQueuee[0].img} alt="" />
           </div>
-          <div class="bottom-bar-song-details">
-            <div class="bottom-bar-song--details--wrapper">
-              <a href="#" class="bottom-bar-song-details-title">{playingQueuee[0].name}</a>
+          <div className="bottom-bar-song-details">
+            <div className="bottom-bar-song--details--wrapper">
+              <a href="#" className="bottom-bar-song-details-title">{playingQueuee[0].name}</a>
             </div>
-            <div class="bottom-bar-song-details">
-              <a href="#" class="bottom-bar-song-details-artist">{playingQueuee[0].artist}</a>
+            <div className="bottom-bar-song-details">
+              <a href="#" className="bottom-bar-song-details-artist">{playingQueuee[0].artist}</a>
             </div>
           </div>
-          <div class="bottom-bar-progress">
+          <div className="bottom-bar-progress">
             <input type="range" name="range" id="myProgressBar" min="0" value={isNaN(playlistProps.progressBar)?0:playlistProps.progressBar} max="100" onChange={changeAudioTime}/>
-            <div class="icons">
+            <div className="icons">
               <div style={{marginLeft:'325px',marginRight:'160px'}}>
 
-                <button className='footerBtn' ><i class="fa-solid fa-shuffle jello" id="shuffle" style={{fontSize:'24px',color:playlistProps.shuffle?'springgreen':'white'}} onClick={shuffle}></i></button>
-                <button className='footerBtn' ><i class="fas fa-3x fa-step-backward" id="previous" style={{fontSize:'24px'}} onClick={handlePrevClick}></i></button>
+                <button className='footerBtn' ><i className="fa-solid fa-shuffle jello" id="shuffle" style={{fontSize:'24px',color:playlistProps.shuffle?'springgreen':'white'}} onClick={shuffle}></i></button>
+                <button className='footerBtn' ><i className="fas fa-3x fa-step-backward" id="previous" style={{fontSize:'24px'}} onClick={handlePrevClick}></i></button>
                 <button className='footerBtn' ><i  id="masterPlay" onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}></i></button>
-                <button className='footerBtn' ><i class="fas fa-3x fa-step-forward" id="next" style={{fontSize:'24px'}} onClick={handleFastForwardClick}></i> </button>
-                <button className='footerBtn' ><i class="fa-solid fa-repeat jello" id="repeat" style={{fontSize:'24px',color:playlistProps.onLoop?'springgreen':'white'}} onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)}></i></button>
+                <button className='footerBtn' ><i className="fas fa-3x fa-step-forward" id="next" style={{fontSize:'24px'}} onClick={handleFastForwardClick}></i> </button>
+                <button className='footerBtn' ><i className="fa-solid fa-repeat jello" id="repeat" style={{fontSize:'24px',color:playlistProps.onLoop?'springgreen':'white'}} onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)}></i></button>
               </div>
                 <div className="volumeContainer">
                 <i className={`fa-solid fa-volume-${playlistProps.audioRef.current.volume===0?'xmark':playlistProps.audioRef.current.volume<=0.5?'low':'high'}`}></i>

@@ -73,13 +73,13 @@ export default function ProfileList() {
 
 
 
-        <div class="navigation">
-          <button class="buttonLogout" id="profileLogout" onClick={logout}>
+        <div className="navigation">
+          <button className="buttonLogout" id="profileLogout" onClick={logout}>
 
             <img src="https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png" />
 
 
-            <div class="logout">LOGOUT</div>
+            <div className="logout">LOGOUT</div>
           </button>
         </div>
       </div>

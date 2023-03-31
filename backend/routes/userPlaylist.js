@@ -26,7 +26,7 @@ router.post('/addUserPlaylist', async (req, res) => {
 
     try { 
         const { user, name, quote, img } = req.body
-    const oldPlaylists = await userPlaylist.find({name})
+    const oldPlaylists = await userPlaylist.find({ $and: [{ user: user }, { name: name }] })
     // console.log(oldPlaylists)
     if (oldPlaylists.length == 0) {
         const newPlaylists = await userPlaylist.create({

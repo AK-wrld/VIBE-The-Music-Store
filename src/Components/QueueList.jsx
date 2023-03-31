@@ -71,7 +71,7 @@ export default function QueueList(prop) {
 
       <div className="queueList" id='queueList' style={q.queueshift  }>
       <h2 className='py-3' style={{display:"inline"}}>Your Queue</h2>
-      <button className='crossBtn jello' onClick={clearQueue} ><i class="bi bi-x-lg clearQueue" ></i></button>
+      <button className='crossBtn jello' onClick={clearQueue} ><i className="bi bi-x-lg clearQueue" ></i></button>
       <ul id='ul'>
         {playingQueuee && playingQueuee.map((el,index)=> {
           // console.log(el)

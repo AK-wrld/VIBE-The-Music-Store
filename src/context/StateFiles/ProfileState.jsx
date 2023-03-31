@@ -3,6 +3,7 @@ import ProfileContext from '../ContextFiles/ProfileContext'
 
 const ProfileState = (props)=> {
    const [Profile, showProfile] = useState("show")
+   const [checkUser,isSet] = useState(false)
    const [User, setUser] = useState({})
    const [btnStyle, switchBtn] = useState({
     
@@ -35,6 +36,7 @@ const ProfileState = (props)=> {
         let userData = await response.json();
         if (userData.success) {
           // console.log(userData)
+          isSet(true)
           setUser(userData.user)
 
         }
@@ -45,12 +47,12 @@ const ProfileState = (props)=> {
 
 
     }
-    if(window.location.pathname!=='/' && window.location.pathname!=='/login' &&window.location.pathname!=='/signup') {
-
+    if(window.location.pathname!=='/' && window.location.pathname!=='/login' &&window.location.pathname!=='/signup' && checkUser===false) {
+      console.log('running')
       getLoggedinUserData()
     }
 
-  }, [])
+  }, [checkUser])
 
 
     return (

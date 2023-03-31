@@ -88,8 +88,8 @@ export default function Playlist() {
          <div className="btns mb-3">
 
           <button className='play playlistBtn jello' id='play' style={{backgroundColor: playlistProps.playBtn?'springgreen':'rgba(255, 3, 100, 0.699)'}} onClick={() => { isEmpty === false && playlistProps.playBtn === false ? playlistProps.isClicked(true)  : playlistProps.isClicked(false)  }}><i  ></i></button>
-          <button className='addToQueue playlistBtn jello' ><i class="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.songArray)}></i></button>
-          <button className='playlistBtn jello' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} style={{backgroundColor: playlistProps.onLoop?'springgreen':'rgba(255, 3, 100, 0.699)'}} ><i class="bi bi-infinity icon"></i></button>
+          <button className='addToQueue playlistBtn jello' ><i className="bi bi-plus-square icon" onClick={() => playlistProps.addSongs(playlistProps.songArray)}></i></button>
+          <button className='playlistBtn jello' onClick={()=>playlistProps.setOnLoop(!playlistProps.onLoop)} style={{backgroundColor: playlistProps.onLoop?'springgreen':'rgba(255, 3, 100, 0.699)'}} ><i className="bi bi-infinity icon"></i></button>
          </div>
 
         </div>

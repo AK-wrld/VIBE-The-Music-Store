@@ -29,7 +29,7 @@ const Search = () => {
     <QueueList/>
     <ProfileList/>
 
-    <div class="carousel__container" >
+    <div className="carousel__container" >
 
      {navbar.results? navbar.results.map((el,index)=> {
         return <SearchItem key={index} artist ={el.artistName} imgUrl = {el.artworkUrl100} trackname = {el.trackName} audioUrl={el.previewUrl} date = {el.releaseDate}/>

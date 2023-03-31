@@ -104,7 +104,7 @@ const Login = () => {
           <div className="passwordContainer">
 
           <input type="password" ref={loginProps.passRef} id="password" name="password" style={{ "width": "100%" }} placeholder="Enter Password" className="my-2" required />
-          <i class={`bi bi-eye${loginProps.seePass===false?'-slash':''}-fill`} style={{fontSize:'large',cursor:'pointer'}} onClick={()=>loginProps.setSeepass(!loginProps.seePass)}></i><br /><br />
+          <i className={`bi bi-eye${loginProps.seePass===false?'-slash':''}-fill`} style={{fontSize:'large',cursor:'pointer'}} onClick={()=>loginProps.setSeepass(!loginProps.seePass)}></i><br /><br />
           </div>
           <button type="submit" className="signinBtn" onClick={ checkLogin}>Sign In</button><br />
 

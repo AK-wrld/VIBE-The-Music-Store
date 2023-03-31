@@ -63,20 +63,20 @@ const SearchItem = (props) => {
 
   return (
     <>
-      <div class="carouselItem">
+      <div className="carouselItem">
         <img
-          class="carousel-item__img"
+          className="carousel-item__img"
           src={props.imgUrl}
           alt="people"
         />
-        <div class="carousel-item__details">
-          <div class="controls">
-            <span class="fas fa-play-circle jello" onClick={() => priorityAdd(props)}></span>
-            <span class="fas fa-plus-circle jello" onClick={() => makeSongObj(props)}></span>
-            <span class="fa-solid fa-folder-plus jello" id='addToPlaylist' onClick={() => openModal(props)}></span>
+        <div className="carousel-item__details">
+          <div className="controls">
+            <span className="fas fa-play-circle jello" onClick={() => priorityAdd(props)}></span>
+            <span className="fas fa-plus-circle jello" onClick={() => makeSongObj(props)}></span>
+            <span className="fa-solid fa-folder-plus jello" id='addToPlaylist' onClick={() => openModal(props)}></span>
           </div>
-          <h5 class="carousel-item__details--title">{props.trackname}</h5>
-          <h6 class="carousel-item__details--subtitle">{props.artist}</h6>
+          <h5 className="carousel-item__details--title">{props.trackname}</h5>
+          <h6 className="carousel-item__details--subtitle">{props.artist}</h6>
         </div>
       </div>
 

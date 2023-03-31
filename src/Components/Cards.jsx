@@ -33,9 +33,9 @@ function Cards() {
   return (
     cardsProps.userPlaylist && <>
     <div id="cardContainer">
-    <div class="card myCard" style={{ "width": "10rem" }} onClick={setModalAsNew}>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png" class="card-img-top" alt="..." />
-        <div class="card-body">
+    <div className="card myCard" style={{ "width": "10rem" }} onClick={setModalAsNew}>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png" className="card-img-top" alt="..." />
+        <div className="card-body">
           <h5>Create a new <span className='vibe'>Vibe</span></h5>
           {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal</button> */}
         </div>
@@ -44,18 +44,18 @@ function Cards() {
       {
         
         cardsProps.userPlaylist.map((el)=> {
-          return <div class="card myCard" style={{ "width": "10rem" }} key = {el._id} onClick={()=>setUserPlaylistDetails(el.name,el.quote,el.img,el._id)} >
+          return <div className="card myCard" style={{ "width": "10rem" }} key = {el._id} onClick={()=>setUserPlaylistDetails(el.name,el.quote,el.img,el._id)} >
             <Link to='/userplaylist'>
-          <img class="card-img-top" src={el.img} alt="..."  />
-          <div class="card-body">
+          <img className="card-img-top" src={el.img} alt="..."  />
+          <div className="card-body">
             <h5 style={{fontFamily:'Delicious Handrawn'}}>{el.name}</h5>
             {/* <h6>{el.quote?el.quote.slice(0,15):''}...</h6> */}
           </div>
             </Link>
             <div className="userPlaylistBtns">
 
-          <button type="button" class="btn btn-danger deleteUserPlaylist" onClick={()=>cardsProps.deleteUserPlaylist(el._id)}><i class="bi bi-x"></i></button>
-          <button type="button" class="btn btn-info updateUserPlaylist"><i class="bi bi-pencil-square" onClick={()=>setModalAsUpdate(el._id,el.name,el.quote,el.img)}></i></button>
+          <button type="button" className="btn btn-danger deleteUserPlaylist" onClick={()=>cardsProps.deleteUserPlaylist(el._id)}><i className="bi bi-x"></i></button>
+          <button type="button" className="btn btn-info updateUserPlaylist"><i className="bi bi-pencil-square" onClick={()=>setModalAsUpdate(el._id,el.name,el.quote,el.img)}></i></button>
             </div>
         </div>
         })
