@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import Navbar from './Navbar'
 // import LoadingBar from 'react-top-loading-bar'
+import {easeOut, motion } from "framer-motion"
 import '../CSS/Playlist.css';
 import QueueList from './QueueList';
 import ModeContext from '../context/ContextFiles/ModeContext'
@@ -72,7 +73,7 @@ export default function Playlist() {
     }
   },[playlistProps.playBtn])
   return (
-    <>
+    playlistProps.songArray && <>
       {/* {console.log(props.queue)} */}
       <Navbar />
       <QueueList />
@@ -95,7 +96,14 @@ export default function Playlist() {
         </div>
         <div className="container">
 
-          <table className='table'>
+          <motion.table className='table'
+           initial={{ opacity: 0, y:50 }}
+           animate={{ opacity: 1, y:0}}
+           transition={{
+            duration: 0.6,
+            delay: 0.3,
+             ease:easeOut
+           }}>
             <thead style={props.textCol}>
 
               <th scope="col">#</th>
@@ -118,7 +126,7 @@ export default function Playlist() {
             })
             }
 
-          </table>
+          </motion.table>
         </div>
 
       </div>

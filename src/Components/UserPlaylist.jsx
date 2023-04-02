@@ -1,6 +1,7 @@
 
 import React, { useEffect, useContext, useState } from 'react'
 import Navbar from './Navbar'
+import {easeOut, motion } from "framer-motion"
 import '../CSS/userPlaylist.css';
 import QueueList from './QueueList';
 import ModeContext from '../context/ContextFiles/ModeContext'
@@ -111,7 +112,14 @@ export default function userPlaylist() {
         </div>
         <div className="container">
 
-          <table className='table'>
+          <motion.table className='table'
+          initial={{ opacity: 0, y:50 }}
+          animate={{ opacity: 1, y:0}}
+          transition={{
+            duration: 0.6,
+            delay: 0.3,
+            ease:easeOut
+          }}>
             <thead style={props.textCol}>
 
               <th scope="col">#</th>
@@ -135,7 +143,7 @@ export default function userPlaylist() {
             })
             }
 
-          </table>
+          </motion.table>
         </div>
 
       </div>

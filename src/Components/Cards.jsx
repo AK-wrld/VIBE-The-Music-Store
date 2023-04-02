@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import {easeIn, easeOut, motion } from "framer-motion"
 import CardsContext from '../context/ContextFiles/CardsContext'
 import ModalContext from '../context/ContextFiles/ModalContext'
 import ProfileContext from '../context/ContextFiles/ProfileContext'
@@ -30,21 +31,25 @@ function Cards() {
     modalContext.setUserPlaylistOldName(name)    
     
   }
+
   return (
     cardsProps.userPlaylist && <>
-    <div id="cardContainer">
+    <motion.div id="cardContainer" className="container"
+  
+    initial="hidden"
+    animate="visible">
     <div className="card myCard" style={{ "width": "10rem" }} onClick={setModalAsNew}>
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Plus_symbol.svg/1200px-Plus_symbol.svg.png" className="card-img-top" alt="..." />
         <div className="card-body">
           <h5>Create a new <span className='vibe'>Vibe</span></h5>
-          {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal</button> */}
+         
         </div>
       </div>
      
       {
         
-        cardsProps.userPlaylist.map((el)=> {
-          return <div className="card myCard" style={{ "width": "10rem" }} key = {el._id} onClick={()=>setUserPlaylistDetails(el.name,el.quote,el.img,el._id)} >
+        cardsProps.userPlaylist.map((el,index)=> {
+          return <motion.div className="card myCard" style={{ "width": "10rem" }} key = {el._id} onClick={()=>setUserPlaylistDetails(el.name,el.quote,el.img,el._id)} initial = {{opacity:0}} animate={{opacity:1}} transition={{duration:1,delay:index*0.1 ,ease:easeIn}} >
             <Link to='/userplaylist'>
           <img className="card-img-top" src={el.img} alt="..."  />
           <div className="card-body">
@@ -57,11 +62,11 @@ function Cards() {
           <button type="button" className="btn btn-danger deleteUserPlaylist" onClick={()=>cardsProps.deleteUserPlaylist(el._id)}><i className="bi bi-x"></i></button>
           <button type="button" className="btn btn-info updateUserPlaylist"><i className="bi bi-pencil-square" onClick={()=>setModalAsUpdate(el._id,el.name,el.quote,el.img)}></i></button>
             </div>
-        </div>
+        </motion.div>
         })
       }
       
-    </div>
+    </motion.div>
       
       
 

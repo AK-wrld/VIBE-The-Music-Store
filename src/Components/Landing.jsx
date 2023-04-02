@@ -13,12 +13,7 @@ export default function Landing() {
     var headphone = document.getElementById('headphone')
     headphone.classList.remove('headphoneAnimation')
   }
-  useEffect(()=> {
-  const root = document.getElementById('root') 
-  root.style.height='100vh'
-  root.style.padding='0px'
 
-},[])
   const props = useContext(ModeContext)
     useEffect(props.toggleMode,[props.mode])
       

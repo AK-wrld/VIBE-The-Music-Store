@@ -32,7 +32,7 @@
   
     /* box-shadow: 10px 10px 30px #8b8b8ba1,
         -10px -10px 30px #ffffffa7; */
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
