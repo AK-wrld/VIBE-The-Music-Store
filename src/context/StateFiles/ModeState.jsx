@@ -3,7 +3,7 @@ import modeContext from '../ContextFiles/ModeContext'
 
 const modeState = (props)=> {
    //make global props and global states here 
-   const [mode, setmode] = useState("light")
+   const [mode, setmode] = useState("dark")
    const [textCol,changetextCol] = useState({
     color : "black"
   })

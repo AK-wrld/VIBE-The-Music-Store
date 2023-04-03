@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/Vibe');
+const password = encodeURIComponent("Vibe@123");
+mongoose.connect(`mongodb+srv://apurbakoley43:${password}@cluster0.kdwao1b.mongodb.net/Vibe`,{
+  useNewUrlParser: true, useUnifiedTopology: true });
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console,'connection error'));

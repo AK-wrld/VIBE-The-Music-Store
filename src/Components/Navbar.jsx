@@ -26,12 +26,12 @@ const checkSearch = ()=> {
 }
 const handleNavInpChange = (ev)=> {
   navbar.setNavInp(ev.target.value)
-  console.log(navbar.navInp)
+  // console.log(navbar.navInp)
 }
 useEffect(()=>{
-  if(navbar.navInp!==''){
+  
     navbar.filter()
-  }
+  
   },[navbar.navInp])
   return (
     <>
@@ -76,7 +76,7 @@ useEffect(()=>{
       <form className="d-flex" role="search">
 
         <input className="form-control me-2" type="search" placeholder="Search" value={navbar.navInp} aria-label="Search" id='navbarInp' onClick={checkSearch} onChange={handleNavInpChange}/>
-        <button className="btn btn-outline-success searchbtn" onClick={(ev)=>ev.preventDefault()} >Search</button>
+        <button className="btn btn-outline-success searchbtn" onClick={(ev)=>ev.preventDefault() && navbar.filter()} >Search</button>
       </form>
     
       
